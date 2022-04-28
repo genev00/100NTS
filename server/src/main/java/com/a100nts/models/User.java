@@ -14,6 +14,7 @@ public class User {
     private Long id;
     @NotEmpty
     @Size(min = 4, message = "Nick name should have at least 4 characters")
+    @Column(unique = true)
     private String nickName;
     @NotEmpty
     @Size(min = 4, message = "First name should have at least 4 characters")
@@ -23,6 +24,7 @@ public class User {
     private String lastName;
     @NotEmpty
     @Email
+    @Column(unique = true)
     private String email;
     @NotEmpty
     @Size(min = 5, message = "Password should have at least 5 characters")

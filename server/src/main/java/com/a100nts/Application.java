@@ -7,11 +7,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @SpringBootApplication
 public class Application {
 
+	@Autowired
+	private static PasswordEncoder passwordEncoder;
+
 	public static void main(String[] args) {
+
+//		boolean test = passwordEncoder.matches("123456", "$2a$10$Y31ZFEnyBUJNVfQZzEfpV.LKB0ze4cimtQuv9qmKQKsYWQYyVS7QO");
+
 		SpringApplication.run(Application.class, args);
 	}
 
