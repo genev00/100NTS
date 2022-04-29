@@ -1,6 +1,6 @@
-package com.example.a100nts.data;
+package com.example.a100nts.data.login;
 
-import com.example.a100nts.data.model.LoggedInUser;
+import com.example.a100nts.data.login.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

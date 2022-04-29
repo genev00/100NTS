@@ -1,4 +1,4 @@
-package com.example.a100nts.data.model;
+package com.example.a100nts.data.login.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

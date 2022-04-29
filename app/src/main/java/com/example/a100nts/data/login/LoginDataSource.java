@@ -1,6 +1,6 @@
-package com.example.a100nts.data;
+package com.example.a100nts.data.login;
 
-import com.example.a100nts.data.model.LoggedInUser;
+import com.example.a100nts.data.login.model.LoggedInUser;
 
 import java.io.IOException;
 

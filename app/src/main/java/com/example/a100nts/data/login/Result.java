@@ -1,4 +1,4 @@
-package com.example.a100nts.data;
+package com.example.a100nts.data.login;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.
