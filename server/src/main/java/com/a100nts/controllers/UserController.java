@@ -1,6 +1,5 @@
 package com.a100nts.controllers;
 
-import com.a100nts.exceptions.UserNotFoundException;
 import com.a100nts.models.User;
 import com.a100nts.repositories.UserRepository;
 import com.a100nts.services.UserService;
@@ -9,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/v1")
