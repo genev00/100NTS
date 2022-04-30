@@ -12,6 +12,7 @@ import android.content.Intent;
 
 import com.example.a100nts.R;
 import com.example.a100nts.entities.User;
+import com.example.a100nts.entities.UserUI;
 import com.example.a100nts.ui.register.RegisterActivity;
 
 import org.springframework.http.HttpEntity;
@@ -41,7 +42,7 @@ public class LoginDataSource {
             );
 
             if (result.getStatusCode() == HttpStatus.OK) {
-                return new Result.Success<>(OBJECT_MAPPER.convertValue(result.getBody(), User.class));
+                return new Result.Success<>(OBJECT_MAPPER.convertValue(result.getBody(), UserUI.class));
             } else {
                 return new Result.Error(new IOException((String) result.getBody()));
             }

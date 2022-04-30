@@ -8,7 +8,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="wrong_password">Wrong password</string>
     <string name="login_failed">Login failed</string>
-    <string name="view_all">View all</string>
+    <string name="view_all">View all sites</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_surname">Surname</string>
     <string name="prompt_password2">Re-enter password</string>
@@ -18,4 +18,5 @@
     <string name="invalid_name">Name must be >3 letters</string>
     <string name="invalid_surname">Surname must be >3 letters</string>
     <string name="nonmatching_passwords">Passwords do not match</string>
+    <string name="sites">Тourist sites</string>
 </resources>

@@ -19,7 +19,7 @@ public class SiteController {
     @Autowired
     private SiteService siteService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<SiteDTO>> getAllSites() {
         return new ResponseEntity<>(siteService.getAllSites(), HttpStatus.OK);
     }

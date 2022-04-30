@@ -1,13 +1,13 @@
 package com.example.a100nts.data.login;
 
-import com.example.a100nts.entities.User;
+import com.example.a100nts.entities.UserUI;
 
 public class LoginRepository {
 
     private static volatile LoginRepository instance;
+    private static UserUI loggedUser = null;
 
     private final LoginDataSource loginDataSource;
-    private static User loggedUser = null;
 
     private LoginRepository(LoginDataSource loginDataSource) {
         this.loginDataSource = loginDataSource;
@@ -27,16 +27,16 @@ public class LoginRepository {
     public Result login(String email, String password) {
         Result result = loginDataSource.login(email, password);
         if (result instanceof Result.Success) {
-            loggedUser = ((Result.Success<User>) result).getData();
+            loggedUser = ((Result.Success<UserUI>) result).getData();
         }
         return result;
     }
 
-    public static User getLoggedUser() {
+    public static UserUI getLoggedUser() {
         return loggedUser;
     }
 
-    public static synchronized void setLoggedUser(User loggedUser) {
+    public static synchronized void setLoggedUser(UserUI loggedUser) {
         LoginRepository.loggedUser = loggedUser;
     }
 

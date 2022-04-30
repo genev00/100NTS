@@ -3,6 +3,7 @@ package com.example.a100nts.ui.login;
 import static com.example.a100nts.common.StringProvider.setContext;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.a100nts.databinding.ActivityLoginBinding;
+import com.example.a100nts.ui.sites.CutSitesActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText emailEditText = binding.email;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
+        final Button viewAllButton = binding.viewAllSitesCut;
 
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
@@ -88,6 +91,10 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> loginViewModel.login(emailEditText.getText().toString(),
                 passwordEditText.getText().toString()));
+        viewAllButton.setOnClickListener(v -> {
+            Intent viewAllSites = new Intent(this, CutSitesActivity.class);
+            this.startActivity(viewAllSites);
+        });
     }
 
     private void showLoginFailed(String error) {

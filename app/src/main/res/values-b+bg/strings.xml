@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">100NTS</string>
+    <string name="app_name">100НТО</string>
     <string name="prompt_email">Имейл</string>
     <string name="prompt_password">Парола</string>
     <string name="action_sign_in">Вход или регистрация</string>
@@ -8,7 +8,7 @@
     <string name="invalid_password">Паролата трябва да бъде >5 знака</string>
     <string name="wrong_password">Грешна парола</string>
     <string name="login_failed">Неуспешен вход</string>
-    <string name="view_all">Виж всички</string>
+    <string name="view_all">Виж всички обекти</string>
     <string name="prompt_name">Име</string>
     <string name="prompt_surname">Фамилия</string>
     <string name="prompt_password2">Потвърди парола</string>
@@ -18,4 +18,5 @@
     <string name="invalid_name">Името трябва да бъде >3 букви</string>
     <string name="invalid_surname">Фамилията трябва да бъде >3 букви</string>
     <string name="nonmatching_passwords">Паролите не съвпадат</string>
+    <string name="sites">Туристически обекти</string>
 </resources>
