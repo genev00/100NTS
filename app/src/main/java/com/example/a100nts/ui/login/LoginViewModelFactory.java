@@ -4,13 +4,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.example.a100nts.data.LoginDataSource;
-import com.example.a100nts.data.LoginRepository;
+import com.example.a100nts.data.login.LoginDataSource;
+import com.example.a100nts.data.login.LoginRepository;
 
-/**
- * ViewModel provider factory to instantiate LoginViewModel.
- * Required given LoginViewModel has a non-empty constructor
- */
 public class LoginViewModelFactory implements ViewModelProvider.Factory {
 
     @NonNull
