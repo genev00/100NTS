@@ -1,8 +1,17 @@
 package com.a100nts.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class SiteImage {
 
     @Id
@@ -13,23 +22,4 @@ public class SiteImage {
     private Site site;
     private String src;
 
-    public SiteImage() {
-    }
-
-    public SiteImage(String src, Site site) {
-        this.site = site;
-        this.src = src;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public String getSrc() {
-        return src;
-    }
 }

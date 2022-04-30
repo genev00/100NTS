@@ -19,11 +19,22 @@ public class SiteController {
 
     @GetMapping("/")
     public List<SiteDTO> getAllSites() {
-        return siteService.getAllSites(false);
+        return siteService.getAllSites();
     }
 
     @GetMapping("/{id}")
-    public SiteDTO getDetails(@PathVariable("id") Long id) {
+    public SiteDTO getDetails(@PathVariable Long id) {
         return siteService.getDetails(id);
     }
+
+    @GetMapping("/bg")
+    public List<SiteDTO> getAllSitesBG() {
+        return siteService.getAllSitesBG();
+    }
+
+    @GetMapping("/bg/{id}")
+    public SiteDTO getDetailsBG(@PathVariable Long id) {
+        return siteService.getDetailsBG(id);
+    }
+
 }

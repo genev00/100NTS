@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface SiteService {
 
-    List<SiteDTO> getAllSites(boolean sorted);
+    List<SiteDTO> getAllSites();
     SiteDTO getDetails(Long id);
+    List<SiteDTO> getAllSitesBG();
+    SiteDTO getDetailsBG(Long id);
+
 }
