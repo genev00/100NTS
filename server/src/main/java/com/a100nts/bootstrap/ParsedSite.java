@@ -8,14 +8,13 @@ public class ParsedSite {
     private String description;
     private List<String> images;
 
+    public ParsedSite() {
+    }
+
     public ParsedSite(String name, String description, List<String> images, double rating) {
         this.title = name;
         this.description = description;
         this.images = images;
-    }
-
-    public ParsedSite() {
-
     }
 
     public String getTitle() {

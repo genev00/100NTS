@@ -1,43 +1,32 @@
-package com.a100nts.models;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+package com.example.a100nts.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
-
-@Entity
-@Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
-    @Size(min = 4, message = "First name should have at least 4 characters")
     private String firstName;
-    @NotEmpty
-    @Size(min = 4, message = "Last name should have at least 4 characters")
     private String lastName;
-    @NotEmpty
-    @Email
-    @Column(unique = true)
     private String email;
-    @NotEmpty
-    @Size(min = 5, message = "Password should have at least 5 characters")
     private String password;
     private boolean ranking;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, boolean ranking) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public User(String firstName, String lastName, String email, String password, boolean ranking) {
+        this(email, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.ranking = ranking;
+    }
+
+    public User(Long id, String firstName, String lastName, String email, String password, boolean ranking) {
+        this(firstName, lastName, email, password, ranking);
+        this.id = id;
     }
 
     public Long getId() {
