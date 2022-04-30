@@ -17,7 +17,6 @@ public class SiteImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     private Site site;
     private String src;

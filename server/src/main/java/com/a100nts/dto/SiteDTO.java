@@ -18,6 +18,7 @@ public class SiteDTO {
     private String town;
     private String details;
     private List<String> imageUrls;
+    private List<CommentDTO> comments;
     private double rating;
 
 }

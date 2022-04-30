@@ -30,6 +30,8 @@ public class Site {
     private String descriptionBG;
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
     private List<SiteImage> images;
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+    private List<Comment> comments;
     private double rating;
 
 }
