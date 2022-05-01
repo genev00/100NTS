@@ -81,13 +81,6 @@ public class LoginActivity extends AppCompatActivity {
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-            return false;
-        });
 
         loginButton.setOnClickListener(v -> {
             loginViewModel.login(emailEditText.getText().toString(),
