@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -67,6 +68,16 @@ public class RegisterActivity extends AppCompatActivity {
         name.addTextChangedListener(afterTextChangedListener);
         surname.addTextChangedListener(afterTextChangedListener);
         password2.addTextChangedListener(afterTextChangedListener);
+        password2.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE && regButton.isEnabled()) {
+                registerUser(
+                        name.getText().toString(),
+                        surname.getText().toString(),
+                        binding.rankSwitch.isChecked()
+                );
+            }
+            return false;
+        });
 
         regButton.setOnClickListener(v -> registerUser(
                 name.getText().toString(),
@@ -76,6 +87,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerDataChanged(EditText name, EditText surname, EditText password2, Button regButton) {
+        regButton.setEnabled(false);
+
         String nameS = name.getText().toString();
         String surnameS = surname.getText().toString();
         String passwordS = password2.getText().toString();
