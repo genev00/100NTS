@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class LoginRepository {
 
     private static volatile LoginRepository instance;
-    private static UserUI loggedUser = null;
+    private static UserUI loggedUser;
 
     public static LoginRepository getInstance() {
         if (instance == null) {
@@ -41,9 +41,10 @@ public class LoginRepository {
         loggedUser = null;
     }
 
+    @SuppressWarnings("unchecked")
     public Result login(String email, String password) {
         Result result = restLogin(email, password);
-        if (result instanceof Result.Success) {
+        if (result instanceof Result.Success && ((Result.Success<?>) result).getData() != null) {
             loggedUser = ((Result.Success<UserUI>) result).getData();
         }
         return result;
@@ -66,7 +67,7 @@ public class LoginRepository {
                 Intent register = new Intent(loginActivity, RegisterActivity.class);
                 setRegistrationData(email, password);
                 loginActivity.startActivity(register);
-                return new Result.Success<>(getLoggedUser());
+                return new Result.Success<>(null);
             }
 
             HttpEntity<User> user = new HttpEntity<>(new User(email, password));

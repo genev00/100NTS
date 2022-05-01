@@ -2,9 +2,9 @@ package com.example.a100nts.ui.register;
 
 import static com.example.a100nts.common.RestUtil.REST_TEMPLATE;
 import static com.example.a100nts.common.RestUtil.SERVER_URL;
-import static com.example.a100nts.common.StringProvider.setContext;
 import static com.example.a100nts.data.login.LoginRepository.setLoggedUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +17,7 @@ import com.example.a100nts.R;
 import com.example.a100nts.databinding.ActivityRegisterBinding;
 import com.example.a100nts.entities.User;
 import com.example.a100nts.entities.UserUI;
+import com.example.a100nts.ui.user.UserActivity;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -37,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setContext(this);
 
         binding.regEmail.setText(email);
         binding.regEmail.setEnabled(false);
@@ -107,6 +107,9 @@ public class RegisterActivity extends AppCompatActivity {
         );
         if (result.getStatusCode() == HttpStatus.CREATED) {
             setLoggedUser(result.getBody());
+            Intent loggedIntent = new Intent(this, UserActivity.class);
+            this.startActivity(loggedIntent);
+            finish();
         }
     }
 

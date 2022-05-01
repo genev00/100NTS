@@ -2,18 +2,14 @@ package com.example.a100nts.ui.sites;
 
 import static com.example.a100nts.common.RestUtil.REST_TEMPLATE;
 import static com.example.a100nts.common.RestUtil.SERVER_URL;
-import static com.example.a100nts.common.StringProvider.setContext;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.a100nts.R;
 import com.example.a100nts.databinding.ActivityCutSitesBinding;
 import com.example.a100nts.entities.Site;
-import com.example.a100nts.entities.SiteAdapter;
+import com.example.a100nts.ui.adapters.SiteAdapter;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +29,6 @@ public class CutSitesActivity extends AppCompatActivity {
 
         binding = ActivityCutSitesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setContext(this);
 
         binding.cutSitesList.setAdapter(new SiteAdapter(this, getSites()));
     }

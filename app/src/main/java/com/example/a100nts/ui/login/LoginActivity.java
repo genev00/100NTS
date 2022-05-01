@@ -89,11 +89,17 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-        loginButton.setOnClickListener(v -> loginViewModel.login(emailEditText.getText().toString(),
-                passwordEditText.getText().toString()));
+        loginButton.setOnClickListener(v -> {
+            loginViewModel.login(emailEditText.getText().toString(),
+                    passwordEditText.getText().toString());
+            emailEditText.setText("");
+            passwordEditText.setText("");
+        });
         viewAllButton.setOnClickListener(v -> {
             Intent viewAllSites = new Intent(this, CutSitesActivity.class);
             this.startActivity(viewAllSites);
+            emailEditText.setText("");
+            passwordEditText.setText("");
         });
     }
 

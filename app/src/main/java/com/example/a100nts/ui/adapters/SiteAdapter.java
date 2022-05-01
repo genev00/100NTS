@@ -1,6 +1,9 @@
-package com.example.a100nts.entities;
+package com.example.a100nts.ui.adapters;
+
+import static com.example.a100nts.ui.sites.CutSiteDetailsActivity.setCurrentSite;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.a100nts.R;
+import com.example.a100nts.entities.Site;
+import com.example.a100nts.ui.sites.CutSiteDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SiteAdapter extends ArrayAdapter<Site> {
 
-    private Context mContext;
-    private List<Site> sitesList;
+    private final Context mContext;
+    private final List<Site> sitesList;
 
     public SiteAdapter(@NonNull Context context, @NonNull List<Site> sites) {
         super(context, 0, sites);
@@ -48,6 +53,12 @@ public class SiteAdapter extends ArrayAdapter<Site> {
 
         ImageView image = listItem.findViewById(R.id.siteImage);
         Picasso.get().load(currentSite.getImageUrls().get(0)).into(image);
+
+        listItem.setOnClickListener(view -> {
+            setCurrentSite(currentSite);
+            Intent details = new Intent(mContext, CutSiteDetailsActivity.class);
+            mContext.startActivity(details);
+        });
 
         return listItem;
     }
