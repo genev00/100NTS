@@ -1,16 +1,25 @@
 package com.example.a100nts.ui.login;
 
+import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
+import static com.example.a100nts.ui.login.LoginActivity.loginActivity;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import android.content.Intent;
 import android.util.Patterns;
 
 import com.example.a100nts.data.login.LoginRepository;
 import com.example.a100nts.data.login.Result;
 import com.example.a100nts.R;
+import com.example.a100nts.ui.user.UserActivity;
+
+import java.util.regex.Pattern;
 
 public class LoginViewModel extends ViewModel {
+
+    private static final String PASSWORD_REGEX = "^(?=[^A-Z\\n]*[A-Z])(?=[^a-z\\n]*[a-z])(?=[^0-9\\n]*[0-9])(?=[^#?!@$%^&*\\n-]*[#?!@$%^&*-]).{8,}$";
 
     private final MutableLiveData<LoginFormState> loginFormState;
     private final MutableLiveData<LoginError> loginResult;
@@ -34,6 +43,9 @@ public class LoginViewModel extends ViewModel {
         Result result = loginRepository.login(username, password);
         if (result instanceof Result.Error) {
             loginResult.setValue(new LoginError(((Result.Error) result).getError().getMessage()));
+        } else if (getLoggedUser() != null) {
+            Intent loggedIntent = new Intent(loginActivity, UserActivity.class);
+            loginActivity.startActivity(loggedIntent);
         }
     }
 
@@ -56,7 +68,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && Pattern.compile(PASSWORD_REGEX).matcher(password).find();
     }
 
 }

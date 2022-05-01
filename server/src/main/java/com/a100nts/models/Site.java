@@ -1,70 +1,54 @@
 package com.a100nts.models;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Site {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String title;
-    @Column(length = 2048)
-    private String description;
-    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
-    private List<SiteImage> images;
-    private double rating;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    public Site(Long id, String name, String description, List<SiteImage> images, double rating) {
-        this.id = id;
-        this.title = name;
-        this.description = description;
-        this.images = images;
-        this.rating = rating;
-    }
+	private String title;
 
-    public Site() {
+	private String titleBG;
 
-    }
+	private String province;
 
-    public Long getId() {
-        return id;
-    }
+	private String provinceBG;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	private String town;
 
-    public String getTitle() {
-        return title;
-    }
+	private String townBG;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	@Column(length = 2048)
+	private String description;
 
-    public String getDescription() {
-        return description;
-    }
+	@Column(length = 2048)
+	private String descriptionBG;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+	private List<SiteImage> images;
 
-    public List<SiteImage> getImages() {
-        return images;
-    }
+	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+	private List<Comment> comments;
 
-    public void setImages(List<SiteImage> images) {
-        this.images = images;
-    }
+	private double rating;
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
 }

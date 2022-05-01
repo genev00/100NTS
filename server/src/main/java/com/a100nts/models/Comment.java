@@ -17,16 +17,20 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SiteImage {
+public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "site_id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "site_id")
 	private Site site;
 
-	private String src;
+	private String comment;
 
 }

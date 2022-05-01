@@ -2,6 +2,9 @@ package com.example.a100nts.ui.login;
 
 import androidx.annotation.Nullable;
 
+import lombok.Getter;
+
+@Getter
 class LoginFormState {
 
     @Nullable
@@ -20,20 +23,6 @@ class LoginFormState {
         this.usernameError = null;
         this.passwordError = null;
         this.isDataValid = isDataValid;
-    }
-
-    @Nullable
-    Integer getUsernameError() {
-        return usernameError;
-    }
-
-    @Nullable
-    Integer getPasswordError() {
-        return passwordError;
-    }
-
-    boolean isDataValid() {
-        return isDataValid;
     }
 
 }

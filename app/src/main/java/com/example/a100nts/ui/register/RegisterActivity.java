@@ -2,9 +2,9 @@ package com.example.a100nts.ui.register;
 
 import static com.example.a100nts.common.RestUtil.REST_TEMPLATE;
 import static com.example.a100nts.common.RestUtil.SERVER_URL;
-import static com.example.a100nts.common.StringProvider.setContext;
 import static com.example.a100nts.data.login.LoginRepository.setLoggedUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.a100nts.R;
 import com.example.a100nts.databinding.ActivityRegisterBinding;
 import com.example.a100nts.entities.User;
+import com.example.a100nts.entities.UserUI;
+import com.example.a100nts.ui.user.UserActivity;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -26,7 +28,6 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public static RegisterActivity registerActivity;
     private static String email;
     private static String password;
     private ActivityRegisterBinding binding;
@@ -37,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        registerActivity = this;
-        setContext(registerActivity);
 
         binding.regEmail.setText(email);
         binding.regEmail.setEnabled(false);
@@ -103,11 +102,14 @@ public class RegisterActivity extends AppCompatActivity {
         HttpEntity<User> user = new HttpEntity<>(
                 new User(name, surname, email, password, ranking)
         );
-        ResponseEntity<? extends User> result = REST_TEMPLATE.exchange(
-                SERVER_URL + "/register", HttpMethod.POST, user, user.getBody().getClass()
+        ResponseEntity<? extends UserUI> result = REST_TEMPLATE.exchange(
+                SERVER_URL + "/register", HttpMethod.POST, user, UserUI.class
         );
         if (result.getStatusCode() == HttpStatus.CREATED) {
             setLoggedUser(result.getBody());
+            Intent loggedIntent = new Intent(this, UserActivity.class);
+            this.startActivity(loggedIntent);
+            finish();
         }
     }
 

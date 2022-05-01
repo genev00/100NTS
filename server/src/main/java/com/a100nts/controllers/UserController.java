@@ -1,5 +1,6 @@
 package com.a100nts.controllers;
 
+import com.a100nts.dto.UserDTO;
 import com.a100nts.models.User;
 import com.a100nts.repositories.UserRepository;
 import com.a100nts.services.UserService;
@@ -8,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import static com.a100nts.utils.UserMapper.userToDTO;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -33,14 +36,12 @@ public class UserController {
         if (!passwordEncoder.matches(user.getPassword(), internalUser.getPassword())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        internalUser.setPassword("");
-        return new ResponseEntity<>(internalUser, HttpStatus.OK);
+        return new ResponseEntity<>(userToDTO(internalUser), HttpStatus.OK);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User newUser = userService.registerUser(user);
-        newUser.setPassword("");
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    public ResponseEntity<UserDTO> registerUser(@RequestBody User user) {
+        return new ResponseEntity<>(userToDTO(userService.registerUser(user)), HttpStatus.CREATED);
     }
+
 }

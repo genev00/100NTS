@@ -28,7 +28,7 @@ public final class RestUtil {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        SERVER_URL = "http://192.168.0.102:8080/api/v1";
+        SERVER_URL = "http://IPv4:8080/api/v1";
     }
 
     private RestUtil() {
