@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginDataChanged(name, surname, password2, regButton);
+                registerDataChanged(name, surname, password2, regButton);
             }
         };
         name.addTextChangedListener(afterTextChangedListener);
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         ));
     }
 
-    private void loginDataChanged(EditText name, EditText surname, EditText password2, Button regButton) {
+    private void registerDataChanged(EditText name, EditText surname, EditText password2, Button regButton) {
         String nameS = name.getText().toString();
         String surnameS = surname.getText().toString();
         String passwordS = password2.getText().toString();
