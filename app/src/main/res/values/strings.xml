@@ -15,8 +15,8 @@
     <string name="action_register">Register</string>
     <string name="rank_participation">Participate in the rankings</string>
     <string name="reg_form">Registration form</string>
-    <string name="invalid_name">Name must be >3 letters</string>
-    <string name="invalid_surname">Surname must be >3 letters</string>
+    <string name="invalid_name">Name must be >3 characters (letters only)</string>
+    <string name="invalid_surname">Surname must be >3 characters (letters only)</string>
     <string name="nonmatching_passwords">Passwords do not match</string>
     <string name="sites">Tourist sites</string>
     <string name="site_tile">Site title</string>

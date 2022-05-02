@@ -15,8 +15,8 @@
     <string name="action_register">Регистрирай се</string>
     <string name="rank_participation">Участвай в класации</string>
     <string name="reg_form">Регистрационна форма</string>
-    <string name="invalid_name">Името трябва да бъде >3 букви</string>
-    <string name="invalid_surname">Фамилията трябва да бъде >3 букви</string>
+    <string name="invalid_name">Името трябва да бъде >3 символа (само букви)</string>
+    <string name="invalid_surname">Фамилията трябва да бъде >3 символа (само букви)</string>
     <string name="nonmatching_passwords">Паролите не съвпадат</string>
     <string name="sites">Туристически обекти</string>
     <string name="site_tile">Име на обект</string>
