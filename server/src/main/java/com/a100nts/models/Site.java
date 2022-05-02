@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -43,12 +46,20 @@ public class Site {
 	@Column(length = 2048)
 	private String descriptionBG;
 
+	private double rating;
+
 	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
 	private List<SiteImage> images;
 
 	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
-	private double rating;
+	@JoinTable (
+			name = "visited_sites_by_user",
+			joinColumns = @JoinColumn(name = "site_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	@ManyToMany
+	private List<User> visitedByUsers;
 
 }

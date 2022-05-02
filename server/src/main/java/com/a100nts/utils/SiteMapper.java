@@ -6,6 +6,7 @@ import com.a100nts.models.Comment;
 import com.a100nts.models.Site;
 import com.a100nts.models.SiteImage;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public final class SiteMapper {
@@ -19,12 +20,7 @@ public final class SiteMapper {
         siteDTO.setProvince(site.getProvince());
         siteDTO.setTown(site.getTown());
         siteDTO.setDetails(site.getDescription());
-        siteDTO.setImageUrls(site.getImages().stream()
-                .map(SiteImage::getSrc)
-                .collect(Collectors.toList()));
-        siteDTO.setComments(site.getComments().stream()
-                .map(SiteMapper::commentToDTO)
-                .collect(Collectors.toList()));
+        setCommonData(site, siteDTO);
         siteDTO.setRating(site.getRating());
         return siteDTO;
     }
@@ -35,14 +31,30 @@ public final class SiteMapper {
         siteDTO.setProvince(site.getProvinceBG());
         siteDTO.setTown(site.getTownBG());
         siteDTO.setDetails(site.getDescriptionBG());
+        setCommonData(site, siteDTO);
+        siteDTO.setRating(site.getRating());
+        return siteDTO;
+    }
+
+    public static List<SiteDTO> sitesToDTOs(List<Site> sites) {
+        return sites.stream()
+                .map(SiteMapper::siteToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public static List<SiteDTO> sitesToDTOsBG(List<Site> sites) {
+        return sites.stream()
+                .map(SiteMapper::siteToDTOBG)
+                .collect(Collectors.toList());
+    }
+
+    private static void setCommonData(Site site, SiteDTO siteDTO) {
         siteDTO.setImageUrls(site.getImages().stream()
                 .map(SiteImage::getSrc)
                 .collect(Collectors.toList()));
         siteDTO.setComments(site.getComments().stream()
                 .map(SiteMapper::commentToDTO)
                 .collect(Collectors.toList()));
-        siteDTO.setRating(site.getRating());
-        return siteDTO;
     }
 
     public static CommentDTO commentToDTO(Comment comment) {

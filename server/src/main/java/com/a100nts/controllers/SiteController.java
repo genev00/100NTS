@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.a100nts.utils.SiteMapper.siteToDTO;
+import static com.a100nts.utils.SiteMapper.siteToDTOBG;
+import static com.a100nts.utils.SiteMapper.sitesToDTOs;
+import static com.a100nts.utils.SiteMapper.sitesToDTOsBG;
+
 @RestController
 @RequestMapping("/api/v1/sites")
 public class SiteController {
@@ -21,22 +26,22 @@ public class SiteController {
 
     @GetMapping
     public ResponseEntity<List<SiteDTO>> getAllSites() {
-        return new ResponseEntity<>(siteService.getAllSites(), HttpStatus.OK);
+        return new ResponseEntity<>(sitesToDTOs(siteService.getAllSites()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SiteDTO> getDetails(@PathVariable Long id) {
-        return new ResponseEntity<>(siteService.getDetails(id), HttpStatus.OK);
+        return new ResponseEntity<>(siteToDTO(siteService.getDetails(id)), HttpStatus.OK);
     }
 
     @GetMapping("/bg")
     public ResponseEntity<List<SiteDTO>> getAllSitesBG() {
-        return new ResponseEntity<>(siteService.getAllSitesBG(), HttpStatus.OK);
+        return new ResponseEntity<>(sitesToDTOsBG(siteService.getAllSitesBG()), HttpStatus.OK);
     }
 
     @GetMapping("/bg/{id}")
     public ResponseEntity<SiteDTO> getDetailsBG(@PathVariable Long id) {
-        return new ResponseEntity<>(siteService.getDetailsBG(id), HttpStatus.OK);
+        return new ResponseEntity<>(siteToDTOBG(siteService.getDetailsBG(id)), HttpStatus.OK);
     }
 
 }
