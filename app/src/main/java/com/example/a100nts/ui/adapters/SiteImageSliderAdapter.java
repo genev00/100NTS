@@ -43,7 +43,6 @@ public class SiteImageSliderAdapter extends SliderViewAdapter<SiteImageSliderAda
     }
 
     static class SliderAdapterViewHolder extends SliderViewAdapter.ViewHolder {
-
         View itemView;
         ImageView imageViewBackground;
 

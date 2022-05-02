@@ -15,5 +15,6 @@ public class UserUI {
     private String lastName;
     private String email;
     private boolean ranking;
+    private int visitedSites;
 
 }

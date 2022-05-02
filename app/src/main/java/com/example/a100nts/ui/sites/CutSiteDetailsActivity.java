@@ -1,5 +1,7 @@
 package com.example.a100nts.ui.sites;
 
+import static com.example.a100nts.utils.ActivityHolder.setActivity;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,18 @@ public class CutSiteDetailsActivity extends AppCompatActivity {
 
         binding = ActivityCutSiteDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setActivity(this);
+
         binding.cutSiteDetailsTitle.setText(currentSite.getTitle());
+
+        setUpSliderView();
+
+        final String provinceAndTown = currentSite.getProvince() + ", " + currentSite.getTown();
+        binding.cutSiteDetailsProvinceAndTown.setText(provinceAndTown);
+        binding.cutSiteDetailsDescription.setText(currentSite.getDetails());
+    }
+
+    private void setUpSliderView() {
         final SliderView cutSiteImgSlider = binding.cutSiteImgSlider;
         cutSiteImgSlider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
 
@@ -29,13 +42,10 @@ public class CutSiteDetailsActivity extends AppCompatActivity {
         cutSiteImgSlider.setScrollTimeInSec(3);
         cutSiteImgSlider.setAutoCycle(true);
         cutSiteImgSlider.startAutoCycle();
-
-        final String provinceAndTown = currentSite.getProvince() + ", " + currentSite.getTown();
-        binding.cutSiteDetailsProvinceAndTown.setText(provinceAndTown);
-        binding.cutSiteDetailsDescription.setText(currentSite.getDetails());
     }
 
     public static void setCurrentSite(Site currentSite) {
         CutSiteDetailsActivity.currentSite = currentSite;
     }
+
 }

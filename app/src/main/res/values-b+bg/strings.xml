@@ -8,7 +8,10 @@
     <string name="invalid_password">Паролата трябва да бъде >5 знака (с най-малко една цифра, малка и главна буква и специален знак)</string>
     <string name="wrong_password">Грешна парола</string>
     <string name="login_failed">Неуспешен вход</string>
-    <string name="view_all">Виж всички обекти</string>
+    <string name="view_all_sites">Виж всички обекти</string>
+    <string name="all_sites">Всички обекти</string>
+    <string name="top_sites">Най-високо оценените обекти</string>
+    <string name="top_users">Потребителска класация</string>
     <string name="prompt_name">Име</string>
     <string name="prompt_surname">Фамилия</string>
     <string name="prompt_password2">Потвърди парола</string>
@@ -19,7 +22,13 @@
     <string name="invalid_surname">Фамилията трябва да бъде >3 символа (само букви)</string>
     <string name="nonmatching_passwords">Паролите не съвпадат</string>
     <string name="sites">Туристически обекти</string>
+    <string name="rated_sites">Класация на туристически обекти</string>
     <string name="site_tile">Име на обект</string>
     <string name="site_province_and_town">Област и град на обекта</string>
     <string name="site_details">Описание на обект</string>
+    <string name="logout">Излез</string>
+    <string name="exit">Изход</string>
+    <string name="error">Възникна неочаквана грешка:</string>
+    <string name="undefined_error">За съжаление не можем да дадем повече информация.</string>
+    <string name="not_enough_site_rankings">Няма оценени обекти към момента.</string>
 </resources>

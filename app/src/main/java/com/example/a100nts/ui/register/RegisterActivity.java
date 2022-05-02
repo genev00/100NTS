@@ -1,7 +1,6 @@
 package com.example.a100nts.ui.register;
 
-import static com.example.a100nts.common.RestUtil.REST_TEMPLATE;
-import static com.example.a100nts.common.RestUtil.SERVER_URL;
+import static com.example.a100nts.utils.ActivityHolder.setActivity;
 import static com.example.a100nts.data.login.LoginRepository.setLoggedUser;
 
 import android.content.Intent;
@@ -12,18 +11,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a100nts.R;
+import com.example.a100nts.utils.RestService;
 import com.example.a100nts.databinding.ActivityRegisterBinding;
 import com.example.a100nts.entities.User;
 import com.example.a100nts.entities.UserUI;
 import com.example.a100nts.ui.user.UserActivity;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.regex.Pattern;
 
@@ -39,7 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setActivity(this);
 
+        setUpButtons();
+    }
+
+    private void setUpButtons() {
         binding.regEmail.setText(email);
         binding.regEmail.setEnabled(false);
         binding.regPassword.setText(password);
@@ -51,23 +52,10 @@ public class RegisterActivity extends AppCompatActivity {
         final Button regButton = binding.regButton;
         regButton.setEnabled(false);
 
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                registerDataChanged(name, surname, password2, regButton);
-            }
-        };
-        name.addTextChangedListener(afterTextChangedListener);
-        surname.addTextChangedListener(afterTextChangedListener);
-        password2.addTextChangedListener(afterTextChangedListener);
+        TextWatcher getRegisterTextChangedListener = getRegisterTextChangedListener(name, surname, password2, regButton);
+        name.addTextChangedListener(getRegisterTextChangedListener);
+        surname.addTextChangedListener(getRegisterTextChangedListener);
+        password2.addTextChangedListener(getRegisterTextChangedListener);
         password2.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE && regButton.isEnabled()) {
                 registerUser(
@@ -84,6 +72,24 @@ public class RegisterActivity extends AppCompatActivity {
                 surname.getText().toString(),
                 binding.rankSwitch.isChecked()
         ));
+    }
+
+    @NonNull
+    private TextWatcher getRegisterTextChangedListener(EditText name, EditText surname, EditText password2, Button regButton) {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                registerDataChanged(name, surname, password2, regButton);
+            }
+        };
     }
 
     private void registerDataChanged(EditText name, EditText surname, EditText password2, Button regButton) {
@@ -112,18 +118,17 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String name, String surname, boolean ranking) {
-        HttpEntity<User> user = new HttpEntity<>(
+        UserUI user = RestService.registerUser(
                 new User(name, surname, email, password, ranking)
         );
-        ResponseEntity<? extends UserUI> result = REST_TEMPLATE.exchange(
-                SERVER_URL + "/register", HttpMethod.POST, user, UserUI.class
-        );
-        if (result.getStatusCode() == HttpStatus.CREATED) {
-            setLoggedUser(result.getBody());
-            Intent loggedIntent = new Intent(this, UserActivity.class);
-            this.startActivity(loggedIntent);
+        if (user == null) {
             finish();
+            System.exit(1);
         }
+        setLoggedUser(user);
+        Intent loggedIntent = new Intent(this, UserActivity.class);
+        startActivity(loggedIntent);
+        finish();
     }
 
     public static void setRegistrationData(String email, String password) {

@@ -1,5 +1,6 @@
 package com.example.a100nts.ui.adapters;
 
+import static com.example.a100nts.data.login.LoginRepository.isUserLogged;
 import static com.example.a100nts.ui.sites.CutSiteDetailsActivity.setCurrentSite;
 
 import android.content.Context;
@@ -24,12 +25,12 @@ import java.util.List;
 public class SiteAdapter extends ArrayAdapter<Site> {
 
     private final Context mContext;
-    private final List<Site> sitesList;
+    private final List<Site> siteList;
 
     public SiteAdapter(@NonNull Context context, @NonNull List<Site> sites) {
         super(context, 0, sites);
         this.mContext = context;
-        this.sitesList = sites;
+        this.siteList = sites;
     }
 
     @NonNull
@@ -37,27 +38,31 @@ public class SiteAdapter extends ArrayAdapter<Site> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
         if (listItem == null) {
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.sites_list_item, parent, false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.site_list_item, parent, false);
         }
 
-        Site currentSite = sitesList.get(position);
+        final Site currentSite = siteList.get(position);
 
-        TextView title = listItem.findViewById(R.id.siteTitle);
+        final TextView title = listItem.findViewById(R.id.userNamesRank);
         title.setText(currentSite.getTitle());
 
-        TextView province = listItem.findViewById(R.id.siteProvince);
+        final TextView province = listItem.findViewById(R.id.siteProvince);
         province.setText(currentSite.getProvince());
 
-        TextView town = listItem.findViewById(R.id.siteTown);
+        final TextView town = listItem.findViewById(R.id.siteTown);
         town.setText(currentSite.getTown());
 
-        ImageView image = listItem.findViewById(R.id.siteImage);
+        final ImageView image = listItem.findViewById(R.id.siteImage);
         Picasso.get().load(currentSite.getImageUrls().get(0)).into(image);
 
         listItem.setOnClickListener(view -> {
             setCurrentSite(currentSite);
-            Intent details = new Intent(mContext, CutSiteDetailsActivity.class);
-            mContext.startActivity(details);
+            if (isUserLogged()) {
+
+            } else {
+                Intent details = new Intent(mContext, CutSiteDetailsActivity.class);
+                mContext.startActivity(details);
+            }
         });
 
         return listItem;
