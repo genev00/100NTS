@@ -17,8 +17,12 @@ public final class UserMapper {
 		userDTO.setLastName(user.getLastName());
 		userDTO.setEmail(user.getEmail());
 		userDTO.setRanking(user.isRanking());
-		userDTO.setVisitedSites(user.getSites().size());
+		userDTO.setVisitedSites(getVisitedSites(user));
 		return userDTO;
+	}
+
+	private static int getVisitedSites(User user) {
+		return user.getSites() != null ? user.getSites().size() : 0;
 	}
 
 	public static List<UserDTO> usersToDTOs(List<User> users) {
