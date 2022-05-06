@@ -55,7 +55,7 @@ public final class RestService {
     private RestService() {
     }
 
-    private static Object executeInExceptionContainer(Supplier<?> supplier) {
+    private static <T> T executeInExceptionContainer(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public final class RestService {
     }
 
     public static Boolean checkIfEmailExists(String email) {
-        return (Boolean) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             ResponseEntity<? extends Boolean> response = REST_TEMPLATE.getForEntity(
                     SERVER_URL + "/users/emailExists" + '/' + email, Boolean.class
             );
@@ -93,7 +93,7 @@ public final class RestService {
     }
 
     public static UserUI registerUser(User user) {
-        return (UserUI) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             HttpEntity<User> entityUser = new HttpEntity<>(user);
             ResponseEntity<UserUI> response = REST_TEMPLATE.exchange(
                     SERVER_URL + "/users/register", HttpMethod.POST, entityUser, UserUI.class
@@ -103,7 +103,7 @@ public final class RestService {
     }
 
     public static Site[] getSites() {
-        return (Site[]) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             String restUrl = SERVER_URL + "/sites";
             if (Locale.getDefault().getLanguage().equals("bg")) {
                 restUrl += "/bg";
@@ -116,7 +116,7 @@ public final class RestService {
     }
 
     public static UserUI[] getUsers() {
-        return (UserUI[]) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             ResponseEntity<? extends UserUI[]> response = REST_TEMPLATE.getForEntity(
                     SERVER_URL + "/users", UserUI[].class
             );
