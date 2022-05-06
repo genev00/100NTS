@@ -1,7 +1,7 @@
 package com.example.a100nts.ui.login;
 
-import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
-import static com.example.a100nts.ui.login.LoginActivity.loginActivity;
+import static com.example.a100nts.utils.ActivityHolder.getActivity;
+import static com.example.a100nts.data.login.LoginRepository.isUserLogged;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -43,9 +43,10 @@ public class LoginViewModel extends ViewModel {
         Result result = loginRepository.login(username, password);
         if (result instanceof Result.Error) {
             loginResult.setValue(new LoginError(((Result.Error) result).getError().getMessage()));
-        } else if (getLoggedUser() != null) {
-            Intent loggedIntent = new Intent(loginActivity, UserActivity.class);
-            loginActivity.startActivity(loggedIntent);
+        } else if (isUserLogged()) {
+            Intent loggedIntent = new Intent(getActivity(), UserActivity.class);
+            getActivity().startActivity(loggedIntent);
+            getActivity().finish();
         }
     }
 

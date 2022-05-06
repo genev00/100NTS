@@ -1,13 +1,13 @@
 [
   {
-    "title": "Madara Horseman",
-    "titleBG": "Мадарски Конник",
-    "province": "Shumen province",
-    "provinceBG": "Шуменска област",
-    "town": "s. Madara",
-    "townBG": "с. Мадара",
-    "description": "The Madara Horseman is located 20 kilometers from the town of Shumen and is a symbolic symbol of the National Historical and Archaeological Reserve \"Madara\", located near the village of the same name. The rock bas-relief was carved in the VIII century AD on a vertical rock at a height of 23 meters. It depicts a life-size horseman, a dog, a lion and inscriptions in Greek.\nWith his left hand the rider holds the reins of his horse, and with his right hand he throws a short spear at the lion that fell at the feet of the animal.\n\nAccording to one theory, the horseman depicted on the rock is Khan Tervel himself, presented as the victor. The inscriptions report events that took place in the VIII - IX century during the reign of the khans Tervel, Omurtag and Kormisosh.\n\nThe bas-relief has been declared a UNESCO World Heritage Site.",
-    "descriptionBG": "Мадарският конник се намира на 20 километра от град Шумен и е знаков символ на Националния историко-археологически резерват „Мадара“, намиращ се в бизост до едноименното село. Скалният барелеф е изсечен през VIII век след Христа върху отвесна скала на височина от 23 метра. Изобразява конник в естествена големина, куче, лъв и надписи на гръцки език.\nС лявата си ръка конникът държи поводите на коня си, а с дясната ръка е хвърлил късо копие върху падналия пред краката на животното лъв.\nСпоред една от теориите конникът изобразен върху скалата е самият хан Тервел, представен като победител. Надписите съобщават за събития случили се през VIII - IX век по времето на управлението на хановете Тервел, Омуртаг и Кормисош.\nБарелефът е обявен от ЮНЕСКО за паметник на световното културно наследство.",
+    "title": "\"Alexander Nevsky\"",
+    "titleBG": "„Александър Невски“",
+    "province": "Sofia province",
+    "provinceBG": "София област",
+    "town": "Sofia",
+    "townBG": "София",
+    "description": "The most majestic and monumental symbol of the city of Sofia. The largest functioning Orthodox church in Bulgaria and the second largest on the Balkan Peninsula. It was built in memory of the Russian soldiers who died for the liberation of Bulgaria during the Russo-Turkish War (1877-1878). It is dedicated to the Russian hero and saint Al. Nevsky, patron of the emperor and patron of the Russian army. Some of the saint's miraculous relics, donated in 1998 by the Russian Orthodox Church, are on display in front of the central altar. The church was built in neo-Byzantine style between 1904 and 1912 according to the project of the Russian architect Prof. Al. Pomeranians. A huge amount of 5.5 million gold levs was spent on its construction, collected through public donations and state support. The temple is a five-nave cross-domed basilica with an accentuated central dome. It occupies an area of \u200B\u200B3170 m2. and accommodates about 5,000 people. It is 75 meters long, 55 meters wide and the central dome is 46 meters high. The bell tower is 53 m high. The total weight of the 12 bells, cast and brought from Moscow, is 23 tons. The gilded layer of the domes is 700 square meters. The temple has 82 oil icons and 273 tempera images made by the best Russian and Bulgarian artists of their time.",
+    "descriptionBG": "Най-величественият и монументален символ на град София. Най-големият действащ православен храм в България и втори по големина на Балканския полуостров. Построен е в памет на руските воини, загинали за освобождението на България през Руско-турската война (1877-1878 г.). Посветен е на руския герой и светец Ал. Невски, патрон на императора и покровител на руското войнство. Частица от чудотворните мощи на светеца, дарени през 1998 г. от Руската православна църква, са изложени за поклонение пред централния олтар. Храмът е строен в неовизантийски стил между 1904 и 1912 г. по проект на руския архитект проф. Ал. Померанцев . За изграждането му е изразходвана огромната за времето си сума от 5,5 млн. златни лева, събрана чрез народни дарения и с държавна подкрепа. Храмът представлява петкорабна кръстокуполна базилика с акцентирано централно кубе. Заема площ от 3170 м2. и побира около 5000 души. Дълъг е 75 метра, широк 55 метра, а централния купол е висок 46 метра. Камбанарията е висока 53 м. Общото тегло на 12-те камбани, излети и донесени от Москва, е 23 тона. Позлатеният слой на куполите е 700 кв. М. Храмът притежава 82 маслени икони и 273 темперни изображения, изработени от най-добрите за времето си руски и български художници.",
     "images": [
       {
         "src": "https://a100nts-repo.web.app/repo/1-1.jpg"
@@ -206,6 +206,27 @@
       },
       {
         "src": "https://a100nts-repo.web.app/repo/10-3.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Madara Horseman",
+    "titleBG": "Мадарски Конник",
+    "province": "Shumen province",
+    "provinceBG": "Шуменска област",
+    "town": "s. Madara",
+    "townBG": "с. Мадара",
+    "description": "The Madara Horseman is located 20 kilometers from the town of Shumen and is a symbolic symbol of the National Historical and Archaeological Reserve \"Madara\", located near the village of the same name. The rock bas-relief was carved in the VIII century AD on a vertical rock at a height of 23 meters. It depicts a life-size horseman, a dog, a lion and inscriptions in Greek.\nWith his left hand the rider holds the reins of his horse, and with his right hand he throws a short spear at the lion that fell at the feet of the animal.\n\nAccording to one theory, the horseman depicted on the rock is Khan Tervel himself, presented as the victor. The inscriptions report events that took place in the VIII - IX century during the reign of the khans Tervel, Omurtag and Kormisosh.\n\nThe bas-relief has been declared a UNESCO World Heritage Site.",
+    "descriptionBG": "Мадарският конник се намира на 20 километра от град Шумен и е знаков символ на Националния историко-археологически резерват „Мадара“, намиращ се в бизост до едноименното село. Скалният барелеф е изсечен през VIII век след Христа върху отвесна скала на височина от 23 метра. Изобразява конник в естествена големина, куче, лъв и надписи на гръцки език.\nС лявата си ръка конникът държи поводите на коня си, а с дясната ръка е хвърлил късо копие върху падналия пред краката на животното лъв.\nСпоред една от теориите конникът изобразен върху скалата е самият хан Тервел, представен като победител. Надписите съобщават за събития случили се през VIII - IX век по времето на управлението на хановете Тервел, Омуртаг и Кормисош.\nБарелефът е обявен от ЮНЕСКО за паметник на световното културно наследство.",
+    "images": [
+      {
+        "src": "https://a100nts-repo.web.app/repo/11-1.jpg"
+      },
+      {
+        "src": "https://a100nts-repo.web.app/repo/11-2.jpg"
+      },
+      {
+        "src": "https://a100nts-repo.web.app/repo/11-3.jpg"
       }
     ]
   }

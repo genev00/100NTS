@@ -10,10 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.a100nts.utils.UserMapper.userToDTO;
+import static com.a100nts.utils.UserMapper.usersToDTOs;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -42,6 +45,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserDTO> registerUser(@RequestBody User user) {
         return new ResponseEntity<>(userToDTO(userService.registerUser(user)), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        return new ResponseEntity<>(usersToDTOs(userService.getAllUsers()), HttpStatus.OK);
     }
 
 }

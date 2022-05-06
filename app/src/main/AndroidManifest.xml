@@ -28,7 +28,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.sites.CutSitesActivity"
+            android:name=".ui.sites.SitesActivity"
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
@@ -38,7 +38,22 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.sites.SiteDetailsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.user.UserActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.user.UserRankingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.error.ErrorActivity"
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
