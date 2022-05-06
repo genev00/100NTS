@@ -33,7 +33,6 @@ public class UserActivity extends AppCompatActivity {
 
     private void setUpButtons() {
         binding.buttonExit.setOnClickListener(l -> {
-            LoginRepository.getInstance().logout();
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
             finish();
@@ -60,8 +59,14 @@ public class UserActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        LoginRepository.getInstance().logout();
         finish();
     }
+
+    @Override
+    public void finish() {
+        LoginRepository.getInstance().logout();
+        super.finish();
+    }
+
 
 }

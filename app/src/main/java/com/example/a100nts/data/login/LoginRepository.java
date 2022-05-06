@@ -31,7 +31,6 @@ public class LoginRepository {
 
     @SuppressWarnings("unchecked")
     public Result login(String email, String password) {
-        logout();
         Result result = restLogin(email, password);
         if (result instanceof Result.Success && ((Result.Success<?>) result).getData() != null) {
             loggedUser = ((Result.Success<UserUI>) result).getData();
