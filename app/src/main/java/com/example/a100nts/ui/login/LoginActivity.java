@@ -125,4 +125,10 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

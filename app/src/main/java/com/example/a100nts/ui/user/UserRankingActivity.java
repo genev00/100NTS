@@ -53,4 +53,10 @@ public class UserRankingActivity extends AppCompatActivity {
         return sortedUsersList;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

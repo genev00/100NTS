@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.a100nts.R;
 import com.example.a100nts.data.login.LoginRepository;
 import com.example.a100nts.databinding.ActivityUserBinding;
 import com.example.a100nts.ui.login.LoginActivity;
@@ -27,8 +26,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setActivity(this);
 
-        final String userNames = getLoggedUser().getFirstName() + " " + getLoggedUser().getLastName();
-        binding.userNames.setText(userNames);
+        binding.firstName.setText(getLoggedUser().getFirstName());
 
         setUpButtons();
     }
@@ -57,6 +55,13 @@ public class UserActivity extends AppCompatActivity {
             Intent viewTopUsers = new Intent(this, UserRankingActivity.class);
             startActivity(viewTopUsers);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        LoginRepository.getInstance().logout();
+        finish();
     }
 
 }
