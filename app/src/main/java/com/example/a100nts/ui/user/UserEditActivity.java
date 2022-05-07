@@ -3,10 +3,12 @@ package com.example.a100nts.ui.user;
 import static com.example.a100nts.common.Constants.PASSWORD_REGEX;
 import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.data.login.LoginRepository.setLoggedUser;
+import static com.example.a100nts.ui.user.UserActivity.bindingCache;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 import static com.example.a100nts.utils.RestService.checkIfEmailExists;
 import static com.example.a100nts.utils.RestService.updateUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -88,6 +90,7 @@ public class UserEditActivity extends AppCompatActivity {
             }
             setLoggedUser(user);
             Toast.makeText(this, getText(R.string.updated_successfully), Toast.LENGTH_SHORT).show();
+            bindingCache.firstName.setText(user.getFirstName());
             finish();
         });
     }

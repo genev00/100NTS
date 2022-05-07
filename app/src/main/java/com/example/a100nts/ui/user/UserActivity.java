@@ -4,6 +4,7 @@ import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.ui.sites.SitesActivity.setIsRankingEnabled;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +17,8 @@ import com.example.a100nts.ui.sites.SitesActivity;
 
 public class UserActivity extends AppCompatActivity {
 
+    @SuppressLint("StaticFieldLeak")
+    static ActivityUserBinding bindingCache;
     private ActivityUserBinding binding;
 
     @Override
@@ -35,6 +38,7 @@ public class UserActivity extends AppCompatActivity {
         binding.firstName.setOnClickListener(l -> {
             Intent editUser = new Intent(this, UserEditActivity.class);
             startActivity(editUser);
+            bindingCache = binding;
         });
 
         binding.buttonExit.setOnClickListener(l -> {
