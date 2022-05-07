@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserUI {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;

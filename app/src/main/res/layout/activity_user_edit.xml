@@ -2,21 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.register.RegisterActivity">
+    tools:context=".ui.user.UserEditActivity">
 
     <TextView
-        android:id="@+id/regFormTitle"
+        android:id="@+id/editFormTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/reg_form"
+        android:text="@string/edit_form"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,99 +20,118 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/regName"
+        android:id="@+id/editName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/prompt_name"
+        android:autofillHints="@string/prompt_new_name"
         android:backgroundTint="#000000"
         android:ems="10"
-        android:hint="@string/prompt_name"
+        android:hint="@string/prompt_new_name"
         android:inputType="textPersonName"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/regSurname"
+        app:layout_constraintBottom_toTopOf="@+id/editSurname"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regFormTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/infoMessage" />
 
     <EditText
-        android:id="@+id/regSurname"
+        android:id="@+id/editSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:autofillHints="@string/prompt_surname"
-        android:hint="@string/prompt_surname"
+        android:autofillHints="@string/prompt_new_surname"
+        android:hint="@string/prompt_new_surname"
         android:textColor="#000000"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/regEmail"
+        app:layout_constraintBottom_toTopOf="@+id/editEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regName" />
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
 
     <EditText
-        android:id="@+id/regEmail"
+        android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textColor="#66000000"
-        android:backgroundTint="#66000000"
-        app:layout_constraintBottom_toTopOf="@+id/regPassword"
+        android:textColor="#000000"
+        android:backgroundTint="#000000"
+        android:autofillHints="@string/prompt_new_email"
+        android:hint="@string/prompt_new_email"
+        app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/editSurname" />
 
     <EditText
-        android:id="@+id/regPassword"
+        android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="#66000000"
-        android:backgroundTint="#66000000"
-        app:layout_constraintBottom_toTopOf="@+id/regPassword2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regEmail" />
-
-    <EditText
-        android:id="@+id/regPassword2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/prompt_password2"
-        android:ems="10"
-        android:hint="@string/prompt_password2"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/rankSwitch"
+        android:autofillHints="@string/prompt_edit_password"
+        android:hint="@string/prompt_edit_password"
+        app:layout_constraintBottom_toTopOf="@+id/editPassword2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+    <EditText
+        android:id="@+id/editPassword2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/prompt_confirm_new_password"
+        android:ems="10"
+        android:hint="@string/prompt_confirm_new_password"
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/editRankSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <Switch
-        android:id="@+id/rankSwitch"
+        android:id="@+id/editRankSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="@string/rank_participation"
         android:checked="true"
         android:trackTint="#A4B8AD"
-        app:layout_constraintBottom_toTopOf="@+id/regButton"
+        app:layout_constraintBottom_toTopOf="@+id/editUserButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/regButton"
+        android:id="@+id/editUserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="@string/action_register"
+        android:text="@string/action_save_changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/infoMessage"
+        android:layout_width="353dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/edit_profile_info"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editFormTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

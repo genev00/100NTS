@@ -102,6 +102,16 @@ public final class RestService {
         });
     }
 
+    public static UserUI updateUser(User user) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<User> entityUser = new HttpEntity<>(user);
+            ResponseEntity<UserUI> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/users/update", HttpMethod.POST, entityUser, UserUI.class
+            );
+            return response.getBody();
+        });
+    }
+
     public static Site[] getSites() {
         return executeInExceptionContainer(() -> {
             String restUrl = SERVER_URL + "/sites";

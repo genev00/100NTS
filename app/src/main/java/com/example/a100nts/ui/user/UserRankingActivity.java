@@ -43,7 +43,8 @@ public class UserRankingActivity extends AppCompatActivity {
 
         final List<UserUI> sortedUsersList = Arrays.stream(users)
                 .filter(UserUI::isRanking)
-                .sorted(Comparator.comparingDouble(UserUI::getVisitedSites).reversed())
+                .sorted(Comparator.comparingDouble(UserUI::getVisitedSites).reversed()
+                    .thenComparing(UserUI::getFirstName))
                 .collect(Collectors.toList());
         if (sortedUsersList.isEmpty()) {
             binding.textNotEnoughUserRankings.setVisibility(View.VISIBLE);

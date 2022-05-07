@@ -4,7 +4,7 @@
     <string name="prompt_password">Парола</string>
     <string name="action_sign_in">Вход или регистрация</string>
     <string name="action_sign_in_short">Вход</string>
-    <string name="invalid_username">Невалиден имейл адрес</string>
+    <string name="invalid_email">Невалиден имейл адрес</string>
     <string name="invalid_password">Паролата трябва да бъде >5 знака (с най-малко една цифра, малка и главна буква и специален знак)</string>
     <string name="wrong_password">Грешна парола</string>
     <string name="login_failed">Неуспешен вход</string>
@@ -31,4 +31,14 @@
     <string name="error">Възникна неочаквана грешка:</string>
     <string name="undefined_error">За съжаление не можем да дадем повече информация.</string>
     <string name="not_enough_site_rankings">Няма оценени обекти към момента.</string>
+    <string name="edit_form">Редактиране на профил</string>
+    <string name="action_save_changes">Запази промените</string>
+    <string name="edit_profile_info">Редактирай само полетата, където искаш да промениш текущата потребителска информация.</string>
+    <string name="prompt_edit_password">Нова парола</string>
+    <string name="prompt_confirm_new_password">Потвърди новата парола</string>
+    <string name="prompt_new_name">Ново име</string>
+    <string name="prompt_new_surname">Нова фамилия</string>
+    <string name="prompt_new_email">Нов имейл</string>
+    <string name="existing_email">Потребител с такъв имейл вече съществува</string>
+    <string name="updated_successfully">Потребителската информация е обновена успешно</string>
 </resources>

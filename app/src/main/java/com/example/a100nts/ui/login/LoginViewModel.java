@@ -1,5 +1,7 @@
 package com.example.a100nts.ui.login;
 
+import static android.util.Patterns.EMAIL_ADDRESS;
+import static com.example.a100nts.common.Constants.PASSWORD_REGEX;
 import static com.example.a100nts.utils.ActivityHolder.getActivity;
 import static com.example.a100nts.data.login.LoginRepository.isUserLogged;
 
@@ -10,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 import android.content.Intent;
 import android.util.Patterns;
 
+import com.example.a100nts.common.Constants;
 import com.example.a100nts.data.login.LoginRepository;
 import com.example.a100nts.data.login.Result;
 import com.example.a100nts.R;
@@ -18,8 +21,6 @@ import com.example.a100nts.ui.user.UserActivity;
 import java.util.regex.Pattern;
 
 public class LoginViewModel extends ViewModel {
-
-    private static final String PASSWORD_REGEX = "^(?=[^A-Z\\n]*[A-Z])(?=[^a-z\\n]*[a-z])(?=[^0-9\\n]*[0-9])(?=[^#?!@$%^&*\\n-]*[#?!@$%^&*-]).{8,}$";
 
     private final MutableLiveData<LoginFormState> loginFormState;
     private final MutableLiveData<LoginError> loginResult;
@@ -52,7 +53,7 @@ public class LoginViewModel extends ViewModel {
 
     public void loginDataChanged(String email, String password) {
         if (!isEmailValid(email)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
+            loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
         } else if (!isPasswordValid(password)) {
             loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
         } else {
@@ -64,8 +65,8 @@ public class LoginViewModel extends ViewModel {
         if (email == null) {
             return false;
         }
-        return !email.contains("abv.bg") && !email.contains("mail.bg") &&
-                Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return !email.contains("abv.bg") && !email.contains("mail.bg")
+                && EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private boolean isPasswordValid(String password) {

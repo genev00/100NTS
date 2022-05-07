@@ -32,6 +32,11 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void setUpButtons() {
+        binding.firstName.setOnClickListener(l -> {
+            Intent editUser = new Intent(this, UserEditActivity.class);
+            startActivity(editUser);
+        });
+
         binding.buttonExit.setOnClickListener(l -> {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
@@ -67,6 +72,5 @@ public class UserActivity extends AppCompatActivity {
         LoginRepository.getInstance().logout();
         super.finish();
     }
-
 
 }
