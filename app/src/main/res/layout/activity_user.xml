@@ -17,8 +17,8 @@
         app:srcCompat="@drawable/shevica1" />
 
     <Button
-        android:id="@+id/userNames"
-        android:layout_width="143dp"
+        android:id="@+id/firstName"
+        android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"

@@ -4,7 +4,7 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="invalid_username">Not a valid email address</string>
+    <string name="invalid_email">Not a valid email address</string>
     <string name="invalid_password">Password must be >5 characters (with at least one digit, lower and uppercase letter and special character)</string>
     <string name="wrong_password">Wrong password</string>
     <string name="login_failed">Login failed</string>
@@ -31,4 +31,14 @@
     <string name="error">An unexpected error has occurred:</string>
     <string name="undefined_error">Unfortunately we cannot provide more information.</string>
     <string name="not_enough_site_rankings">There are no rated sites at this time.</string>
+    <string name="edit_form">Edit profile</string>
+    <string name="action_save_changes">Save changes</string>
+    <string name="edit_profile_info">Edit only the fields where you want to change the current user information.</string>
+    <string name="prompt_edit_password">New password</string>
+    <string name="prompt_confirm_new_password">Re-enter new password</string>
+    <string name="prompt_new_name">New name</string>
+    <string name="prompt_new_surname">New surname</string>
+    <string name="prompt_new_email">New email</string>
+    <string name="existing_email">A user with such an email already exists</string>
+    <string name="updated_successfully">User information updated successfully</string>
 </resources>

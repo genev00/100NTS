@@ -73,4 +73,10 @@ public class SitesActivity extends AppCompatActivity {
         SitesActivity.isRankingEnabled = isRankingEnabled;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

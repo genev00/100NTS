@@ -52,4 +52,9 @@ public class UserController {
         return new ResponseEntity<>(usersToDTOs(userService.getAllUsers()), HttpStatus.OK);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<UserDTO> updateUser(@RequestBody User user) {
+        return new ResponseEntity<>(userToDTO(userService.updateUser(user)), HttpStatus.OK);
+    }
+
 }

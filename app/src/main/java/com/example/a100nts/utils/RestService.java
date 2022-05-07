@@ -3,6 +3,8 @@ package com.example.a100nts.utils;
 import static com.example.a100nts.utils.ActivityHolder.getActivity;
 import static com.example.a100nts.ui.error.ErrorActivity.setErrorMessage;
 
+import static java.util.logging.Level.SEVERE;
+
 import android.content.Intent;
 import android.os.StrictMode;
 
@@ -24,11 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import lombok.SneakyThrows;
 
 public final class RestService {
 
+    private static final Logger logger;
     private static final RestTemplate REST_TEMPLATE;
     private static final String SERVER_URL;
 
@@ -36,6 +41,8 @@ public final class RestService {
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().permitAll().build()
         );
+
+        logger = Logger.getLogger(RestService.class.getName());
 
         REST_TEMPLATE = new RestTemplate();
         List<HttpMessageConverter<?>> converters = new ArrayList<>();
@@ -48,17 +55,18 @@ public final class RestService {
     private RestService() {
     }
 
-    private static Object executeInExceptionContainer(Supplier<?> supplier) {
+    private static <T> T executeInExceptionContainer(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (Exception e) {
+            logger.log(SEVERE, e.getMessage(), e);
             showError(e.getMessage());
         }
         return null;
     }
 
     public static Boolean checkIfEmailExists(String email) {
-        return (Boolean) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             ResponseEntity<? extends Boolean> response = REST_TEMPLATE.getForEntity(
                     SERVER_URL + "/users/emailExists" + '/' + email, Boolean.class
             );
@@ -85,7 +93,7 @@ public final class RestService {
     }
 
     public static UserUI registerUser(User user) {
-        return (UserUI) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             HttpEntity<User> entityUser = new HttpEntity<>(user);
             ResponseEntity<UserUI> response = REST_TEMPLATE.exchange(
                     SERVER_URL + "/users/register", HttpMethod.POST, entityUser, UserUI.class
@@ -94,8 +102,18 @@ public final class RestService {
         });
     }
 
+    public static UserUI updateUser(User user) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<User> entityUser = new HttpEntity<>(user);
+            ResponseEntity<UserUI> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/users/update", HttpMethod.POST, entityUser, UserUI.class
+            );
+            return response.getBody();
+        });
+    }
+
     public static Site[] getSites() {
-        return (Site[]) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             String restUrl = SERVER_URL + "/sites";
             if (Locale.getDefault().getLanguage().equals("bg")) {
                 restUrl += "/bg";
@@ -108,7 +126,7 @@ public final class RestService {
     }
 
     public static UserUI[] getUsers() {
-        return (UserUI[]) executeInExceptionContainer(() -> {
+        return executeInExceptionContainer(() -> {
             ResponseEntity<? extends UserUI[]> response = REST_TEMPLATE.getForEntity(
                     SERVER_URL + "/users", UserUI[].class
             );

@@ -48,4 +48,10 @@ public class CutSiteDetailsActivity extends AppCompatActivity {
         CutSiteDetailsActivity.currentSite = currentSite;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

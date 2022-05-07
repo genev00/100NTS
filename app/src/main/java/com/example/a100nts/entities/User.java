@@ -33,4 +33,9 @@ public class User {
         this.ranking = ranking;
     }
 
+    public User(Long id, String firstName, String lastName, String email, String password, boolean ranking) {
+        this(firstName, lastName, email, password, ranking);
+        this.id = id;
+    }
+
 }

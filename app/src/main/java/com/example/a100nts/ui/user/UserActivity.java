@@ -4,12 +4,12 @@ import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.ui.sites.SitesActivity.setIsRankingEnabled;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.a100nts.R;
 import com.example.a100nts.data.login.LoginRepository;
 import com.example.a100nts.databinding.ActivityUserBinding;
 import com.example.a100nts.ui.login.LoginActivity;
@@ -17,6 +17,8 @@ import com.example.a100nts.ui.sites.SitesActivity;
 
 public class UserActivity extends AppCompatActivity {
 
+    @SuppressLint("StaticFieldLeak")
+    static ActivityUserBinding bindingCache;
     private ActivityUserBinding binding;
 
     @Override
@@ -27,15 +29,19 @@ public class UserActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setActivity(this);
 
-        final String userNames = getLoggedUser().getFirstName() + " " + getLoggedUser().getLastName();
-        binding.userNames.setText(userNames);
+        binding.firstName.setText(getLoggedUser().getFirstName());
 
         setUpButtons();
     }
 
     private void setUpButtons() {
+        binding.firstName.setOnClickListener(l -> {
+            Intent editUser = new Intent(this, UserEditActivity.class);
+            startActivity(editUser);
+            bindingCache = binding;
+        });
+
         binding.buttonExit.setOnClickListener(l -> {
-            LoginRepository.getInstance().logout();
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
             finish();
@@ -57,6 +63,18 @@ public class UserActivity extends AppCompatActivity {
             Intent viewTopUsers = new Intent(this, UserRankingActivity.class);
             startActivity(viewTopUsers);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        LoginRepository.getInstance().logout();
+        super.finish();
     }
 
 }

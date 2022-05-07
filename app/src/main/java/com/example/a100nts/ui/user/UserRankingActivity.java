@@ -43,7 +43,8 @@ public class UserRankingActivity extends AppCompatActivity {
 
         final List<UserUI> sortedUsersList = Arrays.stream(users)
                 .filter(UserUI::isRanking)
-                .sorted(Comparator.comparingDouble(UserUI::getVisitedSites).reversed())
+                .sorted(Comparator.comparingDouble(UserUI::getVisitedSites).reversed()
+                    .thenComparing(UserUI::getFirstName))
                 .collect(Collectors.toList());
         if (sortedUsersList.isEmpty()) {
             binding.textNotEnoughUserRankings.setVisibility(View.VISIBLE);
@@ -51,6 +52,12 @@ public class UserRankingActivity extends AppCompatActivity {
             binding.textNotEnoughUserRankings.setVisibility(View.INVISIBLE);
         }
         return sortedUsersList;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }

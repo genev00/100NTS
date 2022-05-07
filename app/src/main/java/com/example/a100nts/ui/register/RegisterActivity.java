@@ -136,4 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterActivity.password = password;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }
