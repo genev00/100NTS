@@ -171,7 +171,7 @@ public class UserEditActivity extends AppCompatActivity {
                 return;
             }
             if (!newPassword.equals(newPassword2)) {
-                editPassword.setError(getString(R.string.nonmatching_passwords));
+                editPassword2.setError(getString(R.string.nonmatching_passwords));
                 return;
             }
         }
