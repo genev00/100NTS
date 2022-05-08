@@ -33,8 +33,6 @@ public class SiteDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setActivity(this);
 
-        binding.siteDetailsTitle.setText(currentSite.getTitle());
-
         setUpButtons();
         setUpSliderView();
     }
@@ -48,6 +46,8 @@ public class SiteDetailsActivity extends AppCompatActivity {
                 startActivity(mapIntent);
             }
         });
+
+        binding.siteDetailsTitle.setText(currentSite.getTitle());
 
         final String provinceAndTown = currentSite.getProvince() + ", " + currentSite.getTown();
         binding.siteDetailsProvinceAndTown.setText(provinceAndTown);

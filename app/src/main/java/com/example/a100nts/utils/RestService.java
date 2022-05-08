@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 
 public final class RestService {
 
-    private static final Logger logger;
+    private static final Logger LOGGER;
     private static final RestTemplate REST_TEMPLATE;
     private static final String SERVER_URL;
 
@@ -43,7 +43,7 @@ public final class RestService {
                 new StrictMode.ThreadPolicy.Builder().permitAll().build()
         );
 
-        logger = Logger.getLogger(RestService.class.getName());
+        LOGGER = Logger.getLogger(RestService.class.getName());
 
         REST_TEMPLATE = new RestTemplate();
         List<HttpMessageConverter<?>> converters = new ArrayList<>();
@@ -60,7 +60,7 @@ public final class RestService {
         try {
             return supplier.get();
         } catch (Exception e) {
-            logger.log(SEVERE, e.getMessage(), e);
+            LOGGER.log(SEVERE, e.getMessage(), e);
             showError(e.getMessage());
         }
         return null;

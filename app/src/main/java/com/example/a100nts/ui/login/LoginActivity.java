@@ -64,25 +64,27 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE && loginButton.isEnabled()) {
                 loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
-                emailEditText.setText("");
-                passwordEditText.setText("");
+                clearTextFields();
             }
             return false;
         });
 
         loginButton.setOnClickListener(v -> {
             loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
-            emailEditText.setText("");
-            passwordEditText.setText("");
+            clearTextFields();
         });
         viewAllButton.setOnClickListener(v -> {
             setIsRankingEnabled(false);
             setIsUserSitesView(false);
             Intent viewAllSites = new Intent(this, SitesActivity.class);
             startActivity(viewAllSites);
-            emailEditText.setText("");
-            passwordEditText.setText("");
+            clearTextFields();
         });
+    }
+
+    private void clearTextFields() {
+        emailEditText.setText("");
+        passwordEditText.setText("");
     }
 
     @NonNull
@@ -137,9 +139,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void requestLocationAccess() {
-        ActivityCompat.requestPermissions(LoginActivity.this,
+        ActivityCompat.requestPermissions(
+                LoginActivity.this,
                 new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},
-                locationRequestCode);
+                locationRequestCode
+        );
     }
 
     @Override

@@ -6,6 +6,7 @@ import static com.example.a100nts.utils.ActivityHolder.setActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a100nts.R;
@@ -40,6 +41,8 @@ public class SitesActivity extends AppCompatActivity {
         binding.cutSitesList.setAdapter(
                 new SiteAdapter(this, getSites())
         );
+
+        checkViewTitle();
     }
 
     private List<Site> getSites() {
@@ -49,28 +52,10 @@ public class SitesActivity extends AppCompatActivity {
             System.exit(1);
         }
 
-        checkViewTitle();
         if (isRankingEnabled) {
-            final List<Site> sortedSites = Arrays.stream(sites)
-                    .filter(s -> s.getRating() > 0.0)
-                    .sorted(Comparator.comparingDouble(Site::getRating).reversed())
-                    .collect(Collectors.toList());
-            if (sortedSites.isEmpty()) {
-                binding.textNotEnoughSiteRankings.setVisibility(View.VISIBLE);
-            } else {
-                binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
-            }
-            return sortedSites;
+            return getSitesByRatingAndCheckTexts(sites);
         } else if (isUserSitesView) {
-            final List<Site> userSites = Arrays.stream(sites)
-                    .filter(s -> getLoggedUser().getVisitedSites().contains(s.getId()))
-                    .collect(Collectors.toList());
-            if (userSites.isEmpty()) {
-                binding.textNotEnoughUserSites.setVisibility(View.VISIBLE);
-            } else {
-                binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
-            }
-            return userSites;
+            return getUserSitesAndCheckTexts(sites);
         }
         return Arrays.asList(sites);
     }
@@ -83,6 +68,39 @@ public class SitesActivity extends AppCompatActivity {
         } else {
             binding.textViewSitesTitle.setText(getString(R.string.sites));
         }
+    }
+
+    private List<Site> getSitesByRatingAndCheckTexts(Site[] sites) {
+        final List<Site> sortedSites = getSitesByRanking(sites);
+        if (sortedSites.isEmpty()) {
+            binding.textNotEnoughSiteRankings.setVisibility(View.VISIBLE);
+        } else {
+            binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
+        }
+        return sortedSites;
+    }
+
+    private List<Site> getSitesByRanking(Site[] sites) {
+        return Arrays.stream(sites)
+                .filter(s -> s.getRating() > 0)
+                .sorted(Comparator.comparingDouble(Site::getRating).reversed())
+                .collect(Collectors.toList());
+    }
+
+    private List<Site> getUserSitesAndCheckTexts(Site[] sites) {
+        final List<Site> userSites = getUserSites(sites);
+        if (userSites.isEmpty()) {
+            binding.textNotEnoughUserSites.setVisibility(View.VISIBLE);
+        } else {
+            binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
+        }
+        return userSites;
+    }
+
+    private List<Site> getUserSites(Site[] sites) {
+        return Arrays.stream(sites)
+                .filter(s -> getLoggedUser().getVisitedSites().contains(s.getId()))
+                .collect(Collectors.toList());
     }
 
     public static void setIsRankingEnabled(boolean isRankingEnabled) {

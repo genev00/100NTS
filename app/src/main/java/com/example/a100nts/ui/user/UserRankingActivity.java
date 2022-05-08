@@ -29,18 +29,28 @@ public class UserRankingActivity extends AppCompatActivity {
         setActivity(this);
 
         binding.userRankingList.setAdapter(
-                new UserAdapter(this, getUsers())
+                new UserAdapter(this, getUsersAndCheckTexts())
         );
     }
 
-    private List<UserUI> getUsers() {
+    private List<UserUI> getUsersAndCheckTexts() {
         UserUI[] users = RestService.getUsers();
         if (users == null) {
             finish();
             System.exit(1);
         }
 
-        final List<UserUI> sortedUsersList = Arrays.stream(users)
+        final List<UserUI> sortedUsersList = getSortedUsers(users);
+        if (sortedUsersList.isEmpty()) {
+            binding.textNotEnoughUserRankings.setVisibility(View.VISIBLE);
+        } else {
+            binding.textNotEnoughUserRankings.setVisibility(View.INVISIBLE);
+        }
+        return sortedUsersList;
+    }
+
+    private List<UserUI> getSortedUsers(UserUI[] users) {
+        return Arrays.stream(users)
                 .filter(UserUI::isRanking)
                 .sorted((st, nd) -> {
                     int result = Integer.compare(nd.getVisitedSites().size(), st.getVisitedSites().size());
@@ -50,12 +60,6 @@ public class UserRankingActivity extends AppCompatActivity {
                     return result;
                 })
                 .collect(Collectors.toList());
-        if (sortedUsersList.isEmpty()) {
-            binding.textNotEnoughUserRankings.setVisibility(View.VISIBLE);
-        } else {
-            binding.textNotEnoughUserRankings.setVisibility(View.INVISIBLE);
-        }
-        return sortedUsersList;
     }
 
     @Override

@@ -151,16 +151,7 @@ public class UserActivity extends AppCompatActivity {
             finish();
             System.exit(1);
         }
-        List<Long> restList = Arrays.stream(sitesArray)
-                .filter(s -> !user.getVisitedSites().contains(s.getId()))
-                .filter(s -> {
-                    float[] result = new float[1];
-                    Location.distanceBetween(location.getLatitude(), location.getLongitude(),
-                            s.getLatitude(), s.getLongitude(), result);
-                    return result[0] < MAX_DISTANCE;
-                })
-                .map(Site::getId)
-                .collect(Collectors.toList());
+        List<Long> restList = getVisitedSitesIds(location, user, sitesArray);
         if (!restList.isEmpty()) {
             user.getVisitedSites().addAll(restList);
             UserUI updated = RestService.visitSites(
@@ -172,6 +163,19 @@ public class UserActivity extends AppCompatActivity {
             }
             setLoggedUser(updated);
         }
+    }
+
+    private List<Long> getVisitedSitesIds(Location location, UserUI user, Site[] sitesArray) {
+        return Arrays.stream(sitesArray)
+                .filter(s -> !user.getVisitedSites().contains(s.getId()))
+                .filter(s -> {
+                    float[] result = new float[1];
+                    Location.distanceBetween(location.getLatitude(), location.getLongitude(),
+                            s.getLatitude(), s.getLongitude(), result);
+                    return result[0] < MAX_DISTANCE;
+                })
+                .map(Site::getId)
+                .collect(Collectors.toList());
     }
 
     private void showLocationDeniedToast() {
