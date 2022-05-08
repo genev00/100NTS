@@ -41,10 +41,19 @@
     <string name="prompt_new_email">New email</string>
     <string name="existing_email">A user with such an email already exists</string>
     <string name="updated_successfully">User information updated successfully</string>
-    <string name="location_not_granted">We can not access your device\'s location – some features may not work.</string>
+    <string name="location_not_granted">We can not access your device\'s location – some features may not work</string>
     <string name="not_enough_user_rankings">There are currently no participating users or those with one site visited.</string>
     <string name="user_ranking">User ranking</string>
     <string name="my_sites">The sites I visited</string>
     <string name="visited_on">Visited on:</string>
     <string name="not_enough_user_visites">You have not visited any tourist sites so far.</string>
+    <string name="voting_not_enabled">You must visit this site to rate it</string>
+    <string name="saved_vote">The rating was successfully saved</string>
+    <string name="saved_comment">The comment was successfully added</string>
+    <string name="comments">Comments</string>
+    <string name="not_comments">There are no comments yet.</string>
+    <string name="view_comments">View comments</string>
+    <string name="comment_here">Add your comment</string>
+    <string name="add_comment">Post comment</string>
+    <string name="invalid_comment">Comment must be >5 characters</string>
 </resources>

@@ -8,9 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Entity
 @NoArgsConstructor
@@ -33,6 +31,9 @@ public class User {
 	private String password;
 
 	private boolean ranking;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Vote> votes;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Comment> comments;

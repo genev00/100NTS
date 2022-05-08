@@ -5,6 +5,7 @@ import com.a100nts.dto.SiteDTO;
 import com.a100nts.models.Comment;
 import com.a100nts.models.Site;
 import com.a100nts.models.SiteImage;
+import com.a100nts.models.Vote;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,6 @@ public final class SiteMapper {
         siteDTO.setTown(site.getTown());
         siteDTO.setDetails(site.getDescription());
         setCommonData(site, siteDTO);
-        siteDTO.setRating(site.getRating());
         return siteDTO;
     }
 
@@ -32,7 +32,6 @@ public final class SiteMapper {
         siteDTO.setTown(site.getTownBG());
         siteDTO.setDetails(site.getDescriptionBG());
         setCommonData(site, siteDTO);
-        siteDTO.setRating(site.getRating());
         return siteDTO;
     }
 
@@ -53,6 +52,10 @@ public final class SiteMapper {
         siteDTO.setImageUrls(site.getImages().stream()
                 .map(SiteImage::getSrc)
                 .collect(Collectors.toList()));
+        siteDTO.setRating((int) Math.round(site.getVotes().stream()
+                .mapToInt(Vote::getVote)
+                .average()
+                .orElse(0)));
         siteDTO.setComments(site.getComments().stream()
                 .map(SiteMapper::commentToDTO)
                 .collect(Collectors.toList()));
@@ -64,6 +67,7 @@ public final class SiteMapper {
         CommentDTO commentDTO = new CommentDTO();
         commentDTO.setComment(comment.getComment());
         commentDTO.setCommenter(comment.getUser().getFirstName() + ' ' + comment.getUser().getLastName());
+        commentDTO.setDateTime(comment.getDateTime());
         return commentDTO;
     }
 

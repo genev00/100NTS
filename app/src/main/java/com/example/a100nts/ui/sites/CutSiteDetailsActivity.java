@@ -53,7 +53,7 @@ public class CutSiteDetailsActivity extends AppCompatActivity {
 
         SiteImageSliderAdapter adapter = new SiteImageSliderAdapter(currentSite.getImageUrls());
         cutSiteImgSlider.setSliderAdapter(adapter);
-        cutSiteImgSlider.setScrollTimeInSec(3);
+        cutSiteImgSlider.setScrollTimeInSec(5);
         cutSiteImgSlider.setAutoCycle(true);
         cutSiteImgSlider.startAutoCycle();
     }

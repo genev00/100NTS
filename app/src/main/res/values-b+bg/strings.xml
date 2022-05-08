@@ -41,10 +41,19 @@
     <string name="prompt_new_email">Нов имейл</string>
     <string name="existing_email">Потребител с такъв имейл вече съществува</string>
     <string name="updated_successfully">Потребителската информация е обновена успешно</string>
-    <string name="location_not_granted">Нямаме достъп до местоположението на устройството ти – някои функции може да не работят.</string>
+    <string name="location_not_granted">Нямаме достъп до местоположението на устройството ти – някои функции може да не работят</string>
     <string name="not_enough_user_rankings">Към момента няма участващи потребители или такива с по един посетен обект.</string>
     <string name="user_ranking">Потребителска класация</string>
     <string name="my_sites">Посетените от мен обекти</string>
     <string name="visited_on">Посетен на:</string>
     <string name="not_enough_user_visites">Не си посетил нито един туристически обект към момента.</string>
+    <string name="voting_not_enabled">Трябва да посетиш този обект, за да го оцениш</string>
+    <string name="saved_vote">Оценката беше успешно записана</string>
+    <string name="saved_comment">Коментарът беше добавен успешно</string>
+    <string name="comments">Коментари</string>
+    <string name="not_comments">Все още няма коментари.</string>
+    <string name="view_comments">Виж коментарите</string>
+    <string name="comment_here">Добави коментар</string>
+    <string name="add_comment">Публикувай коментар</string>
+    <string name="invalid_comment">Коментарът трябва да бъде >5 символа</string>
 </resources>

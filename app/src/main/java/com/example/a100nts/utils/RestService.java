@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.os.StrictMode;
 
 import com.example.a100nts.R;
+import com.example.a100nts.entities.Comment;
 import com.example.a100nts.entities.Site;
 import com.example.a100nts.entities.User;
 import com.example.a100nts.entities.UserUI;
+import com.example.a100nts.entities.Vote;
 import com.example.a100nts.ui.error.ErrorActivity;
 
 import org.springframework.http.HttpEntity;
@@ -26,14 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Supplier;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import lombok.SneakyThrows;
 
 public final class RestService {
 
-    private static final Logger logger;
+    private static final Logger LOGGER;
     private static final RestTemplate REST_TEMPLATE;
     private static final String SERVER_URL;
 
@@ -42,7 +43,7 @@ public final class RestService {
                 new StrictMode.ThreadPolicy.Builder().permitAll().build()
         );
 
-        logger = Logger.getLogger(RestService.class.getName());
+        LOGGER = Logger.getLogger(RestService.class.getName());
 
         REST_TEMPLATE = new RestTemplate();
         List<HttpMessageConverter<?>> converters = new ArrayList<>();
@@ -59,7 +60,7 @@ public final class RestService {
         try {
             return supplier.get();
         } catch (Exception e) {
-            logger.log(SEVERE, e.getMessage(), e);
+            LOGGER.log(SEVERE, e.getMessage(), e);
             showError(e.getMessage());
         }
         return null;
@@ -140,6 +141,38 @@ public final class RestService {
             ResponseEntity<? extends UserUI> response = REST_TEMPLATE.exchange(
                     SERVER_URL + "/users/" + userId + "/visit",
                     HttpMethod.POST, entityIds, UserUI.class
+            );
+            return response.getBody();
+        });
+    }
+
+    public static Site voteSite(Long userId, Long siteId, int voting) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<Vote> voteEntity = new HttpEntity<>(new Vote(
+                    userId, siteId, voting, Locale.getDefault().getLanguage()
+            ));
+            ResponseEntity<Site> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/sites/vote", HttpMethod.POST, voteEntity, Site.class
+            );
+            return response.getBody();
+        });
+    }
+
+    public static Integer getVote(Long userId, Long siteId) {
+        return executeInExceptionContainer(() -> {
+            final String url = SERVER_URL + String.format("/sites/vote/get/%s/%s", userId, siteId);
+            ResponseEntity<Integer> response = REST_TEMPLATE.getForEntity(
+                    url, Integer.class
+            );
+            return response.getBody();
+        });
+    }
+
+    public static Comment postComment(Comment comment) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<Comment> commentEntity = new HttpEntity<>(comment);
+            ResponseEntity<Comment> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/sites/comment", HttpMethod.POST, commentEntity, Comment.class
             );
             return response.getBody();
         });

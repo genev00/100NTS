@@ -20,7 +20,7 @@ public class SiteDTO {
     private String details;
     private List<String> imageUrls;
     private List<CommentDTO> comments;
-    private double rating;
+    private Integer rating;
     private double latitude;
     private double longitude;
 

@@ -17,29 +17,26 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Comment {
+public class Vote {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	@ManyToOne
-	@JoinColumn(name = "site_id")
+	@JoinColumn(name = "site_id", referencedColumnName = "id")
 	private Site site;
 
-	private String comment;
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
 
-	private String dateTime;
+	private Integer vote;
 
-	public Comment(User user, Site site, String comment, String dateTime) {
-		this.user = user;
+	public Vote(Site site, User user, Integer vote) {
 		this.site = site;
-		this.comment = comment;
-		this.dateTime = dateTime;
+		this.user = user;
+		this.vote = vote;
 	}
 
 }

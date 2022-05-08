@@ -13,5 +13,6 @@ public class CommentDTO {
 
 	private String commenter;
 	private String comment;
+	private String dateTime;
 
 }

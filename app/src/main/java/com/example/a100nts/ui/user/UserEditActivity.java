@@ -53,6 +53,11 @@ public class UserEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setActivity(this);
 
+        setUpFields();
+        setUpButtons();
+    }
+
+    private void setUpFields() {
         editName = binding.editName;
         editSurname = binding.editSurname;
         editEmail = binding.editEmail;
@@ -60,8 +65,6 @@ public class UserEditActivity extends AppCompatActivity {
         editPassword2 = binding.editPassword2;
         editRankSwitch = binding.editRankSwitch;
         binding.editUserButton.setEnabled(false);
-
-        setUpButtons();
     }
 
     private void setUpButtons() {
@@ -75,24 +78,7 @@ public class UserEditActivity extends AppCompatActivity {
         editPassword2.addTextChangedListener(editUserTextChangedListener);
         editRankSwitch.setOnClickListener(l -> editUserDataChanged());
 
-        binding.editUserButton.setOnClickListener(l -> {
-            UserUI user = updateUser(
-                    new User(getLoggedUser().getId(),
-                            editName.getText().toString(),
-                            editSurname.getText().toString(),
-                            editEmail.getText().toString(),
-                            editPassword.getText().toString(),
-                            editRankSwitch.isChecked())
-            );
-            if (user == null) {
-                finish();
-                System.exit(1);
-            }
-            setLoggedUser(user);
-            Toast.makeText(this, getText(R.string.updated_successfully), Toast.LENGTH_SHORT).show();
-            bindingCache.firstName.setText(user.getFirstName());
-            finish();
-        });
+        binding.editUserButton.setOnClickListener(getEditUserClickListener());
     }
 
     private void loadCurrentInformation() {
@@ -123,6 +109,27 @@ public class UserEditActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 editUserDataChanged();
             }
+        };
+    }
+
+    private View.OnClickListener getEditUserClickListener() {
+        return l -> {
+            UserUI user = updateUser(
+                    new User(getLoggedUser().getId(),
+                            editName.getText().toString(),
+                            editSurname.getText().toString(),
+                            editEmail.getText().toString(),
+                            editPassword.getText().toString(),
+                            editRankSwitch.isChecked())
+            );
+            if (user == null) {
+                finish();
+                System.exit(1);
+            }
+            setLoggedUser(user);
+            Toast.makeText(this, getText(R.string.updated_successfully), Toast.LENGTH_SHORT).show();
+            bindingCache.firstName.setText(user.getFirstName());
+            finish();
         };
     }
 

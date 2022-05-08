@@ -46,10 +46,11 @@ public class Site {
 	@Column(length = 2048)
 	private String descriptionBG;
 
-	private double rating;
-
 	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
 	private List<SiteImage> images;
+
+	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+	private List<Vote> votes;
 
 	@OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
 	private List<Comment> comments;

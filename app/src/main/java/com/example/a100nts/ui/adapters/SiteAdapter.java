@@ -2,8 +2,9 @@ package com.example.a100nts.ui.adapters;
 
 import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.data.login.LoginRepository.isUserLogged;
-import static com.example.a100nts.ui.sites.CutSiteDetailsActivity.setCurrentSite;
+import static com.example.a100nts.ui.sites.SitesActivity.isRankingEnabled;
 import static com.example.a100nts.ui.sites.SitesActivity.isUserSitesView;
+import static com.example.a100nts.utils.ActivityHolder.getActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import com.example.a100nts.R;
 import com.example.a100nts.entities.Site;
 import com.example.a100nts.ui.sites.CutSiteDetailsActivity;
+import com.example.a100nts.ui.sites.SiteDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -68,17 +70,31 @@ public class SiteAdapter extends ArrayAdapter<Site> {
             town.setText(currentSite.getTown());
         }
 
+        final TextView rating = listItem.findViewById(R.id.siteRating);
+        final ImageView star = listItem.findViewById(R.id.starRating);
+        if (isRankingEnabled()) {
+            star.setVisibility(View.VISIBLE);
+            rating.setVisibility(View.VISIBLE);
+            rating.setText(String.valueOf(currentSite.getRating()));
+        } else {
+            star.setVisibility(View.INVISIBLE);
+            rating.setVisibility(View.INVISIBLE);
+        }
+
         final ImageView image = listItem.findViewById(R.id.siteImage);
         Picasso.get().load(currentSite.getImageUrls().get(0)).into(image);
 
         listItem.setOnClickListener(view -> {
-            setCurrentSite(currentSite);
+            Intent details;
             if (isUserLogged()) {
-
+                SiteDetailsActivity.setCurrentSite(currentSite);
+                details = new Intent(mContext, SiteDetailsActivity.class);
             } else {
-                Intent details = new Intent(mContext, CutSiteDetailsActivity.class);
-                mContext.startActivity(details);
+                CutSiteDetailsActivity.setCurrentSite(currentSite);
+                details = new Intent(mContext, CutSiteDetailsActivity.class);
             }
+            mContext.startActivity(details);
+            getActivity().finish();
         });
 
         return listItem;

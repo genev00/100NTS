@@ -1,4 +1,4 @@
-package com.example.a100nts.entities;
+package com.a100nts.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Vote {
 
-    private String commenter;
-    private String comment;
-    private String dateTime;
+	private Long userId;
+	private Long siteId;
+	private Integer vote;
+	private String language;
 
 }
