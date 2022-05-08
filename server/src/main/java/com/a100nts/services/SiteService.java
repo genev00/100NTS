@@ -12,5 +12,6 @@ public interface SiteService {
     List<Site> getAllSitesBG();
     Site getDetailsBG(Long id);
     Site voteSite(Vote vote);
+    Integer getUserVoteForSite(Long userId, Long siteId);
 
 }

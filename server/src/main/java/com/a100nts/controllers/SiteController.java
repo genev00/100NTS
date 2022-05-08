@@ -60,4 +60,9 @@ public class SiteController {
         return new ResponseEntity<>(siteDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/vote/get/{userId}/{siteId}")
+    public ResponseEntity<Integer> getVoteForSite(@PathVariable Long userId, @PathVariable Long siteId) {
+        return new ResponseEntity<>(siteService.getUserVoteForSite(userId, siteId), HttpStatus.OK);
+    }
+
 }

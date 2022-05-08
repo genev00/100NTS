@@ -157,6 +157,16 @@ public final class RestService {
         });
     }
 
+    public static Integer getVote(Long userId, Long siteId) {
+        return executeInExceptionContainer(() -> {
+            final String url = SERVER_URL + String.format("/sites/vote/get/%s/%s", userId, siteId);
+            ResponseEntity<Integer> response = REST_TEMPLATE.getForEntity(
+                    url, Integer.class
+            );
+            return response.getBody();
+        });
+    }
+
     @SneakyThrows
     private static void showError(String message) {
         setErrorMessage(message);

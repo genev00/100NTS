@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SiteServiceImpl implements SiteService {
@@ -72,6 +71,15 @@ public class SiteServiceImpl implements SiteService {
         }
         site.setVotes(siteVotes);
         return siteRepository.save(site);
+    }
+
+    @Override
+    public Integer getUserVoteForSite(Long userId, Long siteId) {
+        return siteRepository.findById(siteId).get().getVotes().stream()
+                .filter(v -> v.getUser().getId().equals(userId))
+                .map(com.a100nts.models.Vote::getVote)
+                .findFirst()
+                .orElse(0);
     }
 
 }

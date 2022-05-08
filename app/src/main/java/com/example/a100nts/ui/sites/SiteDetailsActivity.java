@@ -80,7 +80,13 @@ public class SiteDetailsActivity extends AppCompatActivity {
         binding.threeStar.setImageResource(R.drawable.star_inactive);
         binding.fourStar.setImageResource(R.drawable.star_inactive);
         binding.fiveStar.setImageResource(R.drawable.star_inactive);
-        switch (currentSite.getRating()) {
+        Integer siteRating = RestService.getVote(getLoggedUser().getId(), currentSite.getId());
+        if (siteRating == null) {
+            finish();
+            System.exit(1);
+        }
+        siteRating = siteRating == 0 ? currentSite.getRating() : siteRating;
+        switch (siteRating) {
             case 1:
                 binding.oneStar.setImageResource(R.drawable.star_active);
                 break;
