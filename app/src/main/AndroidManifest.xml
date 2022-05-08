@@ -61,6 +61,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.sites.CommentsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.error.ErrorActivity"
             android:exported="true"
             android:screenOrientation="portrait">

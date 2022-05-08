@@ -33,4 +33,13 @@ public class Comment {
 
 	private String comment;
 
+	private String dateTime;
+
+	public Comment(User user, Site site, String comment, String dateTime) {
+		this.user = user;
+		this.site = site;
+		this.comment = comment;
+		this.dateTime = dateTime;
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.a100nts.services;
 
+import com.a100nts.dto.CommentDTO;
+import com.a100nts.models.Comment;
 import com.a100nts.models.Site;
 import com.a100nts.web.Vote;
 
@@ -13,5 +15,6 @@ public interface SiteService {
     Site getDetailsBG(Long id);
     Site voteSite(Vote vote);
     Integer getUserVoteForSite(Long userId, Long siteId);
+    Comment addComment(CommentDTO comment);
 
 }

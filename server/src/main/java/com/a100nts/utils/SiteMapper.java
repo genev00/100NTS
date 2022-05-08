@@ -67,6 +67,7 @@ public final class SiteMapper {
         CommentDTO commentDTO = new CommentDTO();
         commentDTO.setComment(comment.getComment());
         commentDTO.setCommenter(comment.getUser().getFirstName() + ' ' + comment.getUser().getLastName());
+        commentDTO.setDateTime(comment.getDateTime());
         return commentDTO;
     }
 

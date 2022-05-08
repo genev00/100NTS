@@ -130,17 +130,27 @@
         <TextView
             android:id="@+id/siteDetailsDescription"
             android:layout_width="380dp"
-            android:layout_height="376dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/site_details"
             android:textColor="#000000"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/siteDetailsProvinceAndTown"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintTop_toBottomOf="@+id/siteDetailsProvinceAndTown" />
+
+        <Button
+            android:id="@+id/buttonViewAllComments"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/view_comments"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/siteDetailsDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

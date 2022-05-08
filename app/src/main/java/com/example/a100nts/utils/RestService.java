@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.StrictMode;
 
 import com.example.a100nts.R;
+import com.example.a100nts.entities.Comment;
 import com.example.a100nts.entities.Site;
 import com.example.a100nts.entities.User;
 import com.example.a100nts.entities.UserUI;
@@ -162,6 +163,16 @@ public final class RestService {
             final String url = SERVER_URL + String.format("/sites/vote/get/%s/%s", userId, siteId);
             ResponseEntity<Integer> response = REST_TEMPLATE.getForEntity(
                     url, Integer.class
+            );
+            return response.getBody();
+        });
+    }
+
+    public static Comment postComment(Comment comment) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<Comment> commentEntity = new HttpEntity<>(comment);
+            ResponseEntity<Comment> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/sites/comment", HttpMethod.POST, commentEntity, Comment.class
             );
             return response.getBody();
         });

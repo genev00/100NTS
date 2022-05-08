@@ -74,7 +74,7 @@
         <TextView
             android:id="@+id/cutSiteDetailsDescription"
             android:layout_width="380dp"
-            android:layout_height="376dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/site_details"
             android:textColor="#000000"

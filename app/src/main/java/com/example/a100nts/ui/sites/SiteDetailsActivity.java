@@ -1,6 +1,8 @@
 package com.example.a100nts.ui.sites;
 
 import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
+import static com.example.a100nts.ui.sites.CommentsActivity.setComments;
+import static com.example.a100nts.ui.sites.CommentsActivity.setSiteId;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
 import android.content.Intent;
@@ -50,6 +52,13 @@ public class SiteDetailsActivity extends AppCompatActivity {
         final String provinceAndTown = currentSite.getProvince() + ", " + currentSite.getTown();
         binding.siteDetailsProvinceAndTown.setText(provinceAndTown);
         binding.siteDetailsDescription.setText(currentSite.getDetails());
+
+        binding.buttonViewAllComments.setOnClickListener(l -> {
+            setSiteId(currentSite.getId());
+            setComments(currentSite.getComments());
+            Intent comments = new Intent(this, CommentsActivity.class);
+            startActivity(comments);
+        });
 
         setUpStars();
     }

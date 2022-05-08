@@ -49,4 +49,11 @@
     <string name="not_enough_user_visites">Не си посетил нито един туристически обект към момента.</string>
     <string name="voting_not_enabled">Трябва да посетиш този обект, за да го оцениш</string>
     <string name="saved_vote">Оценката беше успешно записана</string>
+    <string name="saved_comment">Коментарът беше добавен успешно</string>
+    <string name="comments">Коментари</string>
+    <string name="not_comments">Все още няма коментари.</string>
+    <string name="view_comments">Виж коментарите</string>
+    <string name="comment_here">Добави коментар</string>
+    <string name="add_comment">Публикувай коментар</string>
+    <string name="invalid_comment">Коментарът трябва да бъде >5 символа</string>
 </resources>

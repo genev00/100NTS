@@ -1,5 +1,6 @@
 package com.a100nts.controllers;
 
+import com.a100nts.dto.CommentDTO;
 import com.a100nts.dto.SiteDTO;
 import com.a100nts.models.Site;
 import com.a100nts.services.SiteService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.a100nts.utils.SiteMapper.commentToDTO;
 import static com.a100nts.utils.SiteMapper.siteToDTO;
 import static com.a100nts.utils.SiteMapper.siteToDTOBG;
 import static com.a100nts.utils.SiteMapper.sitesToDTOs;
@@ -63,6 +65,11 @@ public class SiteController {
     @GetMapping("/vote/get/{userId}/{siteId}")
     public ResponseEntity<Integer> getVoteForSite(@PathVariable Long userId, @PathVariable Long siteId) {
         return new ResponseEntity<>(siteService.getUserVoteForSite(userId, siteId), HttpStatus.OK);
+    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<CommentDTO> voteSite(@RequestBody CommentDTO comment) {
+        return new ResponseEntity<>(commentToDTO(siteService.addComment(comment)), HttpStatus.OK);
     }
 
 }
