@@ -35,6 +35,9 @@ public class User {
 	private boolean ranking;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Vote> votes;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
 	@JoinTable (

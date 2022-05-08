@@ -12,6 +12,7 @@ import com.example.a100nts.R;
 import com.example.a100nts.entities.Site;
 import com.example.a100nts.entities.User;
 import com.example.a100nts.entities.UserUI;
+import com.example.a100nts.entities.Vote;
 import com.example.a100nts.ui.error.ErrorActivity;
 
 import org.springframework.http.HttpEntity;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Supplier;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import lombok.SneakyThrows;
@@ -140,6 +140,18 @@ public final class RestService {
             ResponseEntity<? extends UserUI> response = REST_TEMPLATE.exchange(
                     SERVER_URL + "/users/" + userId + "/visit",
                     HttpMethod.POST, entityIds, UserUI.class
+            );
+            return response.getBody();
+        });
+    }
+
+    public static Site voteSite(Long userId, Long siteId, int voting) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<Vote> voteEntity = new HttpEntity<>(new Vote(
+                    userId, siteId, voting, Locale.getDefault().getLanguage()
+            ));
+            ResponseEntity<Site> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/sites/vote", HttpMethod.POST, voteEntity, Site.class
             );
             return response.getBody();
         });

@@ -1,12 +1,16 @@
 package com.a100nts.controllers;
 
 import com.a100nts.dto.SiteDTO;
+import com.a100nts.models.Site;
 import com.a100nts.services.SiteService;
+import com.a100nts.web.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +46,18 @@ public class SiteController {
     @GetMapping("/bg/{id}")
     public ResponseEntity<SiteDTO> getDetailsBG(@PathVariable Long id) {
         return new ResponseEntity<>(siteToDTOBG(siteService.getDetailsBG(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("/vote")
+    public ResponseEntity<SiteDTO> voteSite(@RequestBody Vote vote) {
+        Site site = siteService.voteSite(vote);
+        SiteDTO siteDTO;
+        if (vote.getLanguage().equals("bg")) {
+            siteDTO = siteToDTOBG(site);
+        } else {
+            siteDTO = siteToDTO(site);
+        }
+        return new ResponseEntity<>(siteDTO, HttpStatus.OK);
     }
 
 }

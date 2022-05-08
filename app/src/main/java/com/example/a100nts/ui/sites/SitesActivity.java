@@ -97,6 +97,10 @@ public class SitesActivity extends AppCompatActivity {
         SitesActivity.isUserSitesView = isUserSitesView;
     }
 
+    public static boolean isRankingEnabled() {
+        return isRankingEnabled;
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

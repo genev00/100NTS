@@ -20,7 +20,7 @@ public class Site {
     private String details;
     private List<String> imageUrls;
     private List<Comment> comments;
-    private double rating;
+    private Integer rating;
     private double latitude;
     private double longitude;
 }

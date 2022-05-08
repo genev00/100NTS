@@ -71,6 +71,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/siteImgSlider" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/votingContainer"
+            android:layout_width="127dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/siteDetailsDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/siteImgSlider">
+
+            <ImageView
+                android:id="@+id/oneStar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toStartOf="@+id/twoStar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_inactive" />
+
+            <ImageView
+                android:id="@+id/twoStar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toStartOf="@+id/threeStar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_inactive" />
+
+            <ImageView
+                android:id="@+id/threeStar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toStartOf="@+id/fourStar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_inactive" />
+
+            <ImageView
+                android:id="@+id/fourStar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toStartOf="@+id/fiveStar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_inactive" />
+
+            <ImageView
+                android:id="@+id/fiveStar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_inactive" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/siteDetailsDescription"
             android:layout_width="380dp"
