@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -16,6 +18,7 @@ public class UserDTO {
 	private String lastName;
 	private String email;
 	private boolean ranking;
-	private int visitedSites;
+	private List<Long> visitedSites;
+	private List<String> sitesTime;
 
 }

@@ -13,7 +13,6 @@ import com.example.a100nts.ui.adapters.UserAdapter;
 import com.example.a100nts.utils.RestService;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +42,13 @@ public class UserRankingActivity extends AppCompatActivity {
 
         final List<UserUI> sortedUsersList = Arrays.stream(users)
                 .filter(UserUI::isRanking)
-                .sorted(Comparator.comparingDouble(UserUI::getVisitedSites).reversed()
-                    .thenComparing(UserUI::getFirstName))
+                .sorted((st, nd) -> {
+                    int result = Integer.compare(nd.getVisitedSites().size(), st.getVisitedSites().size());
+                    if (result == 0) {
+                        result = st.getFirstName().compareToIgnoreCase(nd.getFirstName());
+                    }
+                    return result;
+                })
                 .collect(Collectors.toList());
         if (sortedUsersList.isEmpty()) {
             binding.textNotEnoughUserRankings.setVisibility(View.VISIBLE);

@@ -31,6 +31,15 @@
             app:layout_constraintTop_toBottomOf="@+id/siteDetailsProvinceAndTown"
             app:layout_constraintVertical_bias="0.25" />
 
+        <ImageView
+            android:id="@+id/googleMapsSite"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/maps_icon" />
+
         <TextView
             android:id="@+id/siteDetailsProvinceAndTown"
             android:layout_width="wrap_content"

@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 public class SiteDTO {
 
+    private Long id;
     private String title;
     private String province;
     private String town;
@@ -20,5 +21,7 @@ public class SiteDTO {
     private List<String> imageUrls;
     private List<CommentDTO> comments;
     private double rating;
+    private double latitude;
+    private double longitude;
 
 }

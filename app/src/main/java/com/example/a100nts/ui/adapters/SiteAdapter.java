@@ -1,7 +1,9 @@
 package com.example.a100nts.ui.adapters;
 
+import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.data.login.LoginRepository.isUserLogged;
 import static com.example.a100nts.ui.sites.CutSiteDetailsActivity.setCurrentSite;
+import static com.example.a100nts.ui.sites.SitesActivity.isUserSitesView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,10 +49,24 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         title.setText(currentSite.getTitle());
 
         final TextView province = listItem.findViewById(R.id.siteProvince);
-        province.setText(currentSite.getProvince());
+        if (isUserSitesView()) {
+            province.setText(mContext.getText(R.string.visited_on));
+        } else {
+            province.setText(currentSite.getProvince());
+        }
 
         final TextView town = listItem.findViewById(R.id.siteTown);
-        town.setText(currentSite.getTown());
+        if (isUserSitesView()) {
+            final String siteVisitTime = getLoggedUser().getSitesTime().stream()
+                    .map(t -> t.split("\\+"))
+                    .filter(t -> Long.parseLong(t[0]) == currentSite.getId())
+                    .map(t -> t[1])
+                    .findFirst()
+                    .orElse(null);
+            town.setText(siteVisitTime);
+        } else {
+            town.setText(currentSite.getTown());
+        }
 
         final ImageView image = listItem.findViewById(R.id.siteImage);
         Picasso.get().load(currentSite.getImageUrls().get(0)).into(image);

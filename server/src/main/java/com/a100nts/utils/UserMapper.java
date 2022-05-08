@@ -1,8 +1,10 @@
 package com.a100nts.utils;
 
 import com.a100nts.dto.UserDTO;
+import com.a100nts.models.Site;
 import com.a100nts.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,11 +21,16 @@ public final class UserMapper {
 		userDTO.setEmail(user.getEmail());
 		userDTO.setRanking(user.isRanking());
 		userDTO.setVisitedSites(getVisitedSites(user));
+		userDTO.setSitesTime(user.getSitesTime());
 		return userDTO;
 	}
 
-	private static int getVisitedSites(User user) {
-		return user.getSites() != null ? user.getSites().size() : 0;
+	private static List<Long> getVisitedSites(User user) {
+		return user.getSites() != null
+				? user.getSites().stream()
+					.map(Site::getId)
+					.collect(Collectors.toList())
+				: new ArrayList<>();
 	}
 
 	public static List<UserDTO> usersToDTOs(List<User> users) {

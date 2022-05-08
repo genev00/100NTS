@@ -18,7 +18,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/1-3.jpg"
       }
-    ]
+    ],
+    "latitude": "42.69595203693941",
+    "longitude": "23.332359549785572"
   },
   {
     "title": "Vihren Peak",
@@ -39,7 +41,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/2-3.jpg"
       }
-    ]
+    ],
+    "latitude": "41.76721831888217",
+    "longitude": "23.39888808409057"
   },
   {
     "title": "Tsarevets",
@@ -60,7 +64,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/3-3.jpg"
       }
-    ]
+    ],
+    "latitude": "43.158085487033574",
+    "longitude": "23.80185489003171"
   },
   {
     "title": "Yagodinska cave",
@@ -81,7 +87,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/4-3.jpg"
       }
-    ]
+    ],
+    "latitude": "41.62887445868459",
+    "longitude": "24.329983943745194"
   },
   {
     "title": "Snezhanka Peak",
@@ -102,7 +110,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/5-3.jpg"
       }
-    ]
+    ],
+    "latitude": "41.637894693390024",
+    "longitude": "24.675706263001587"
   },
   {
     "title": "Magura Cave",
@@ -123,7 +133,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/6-3.jpg"
       }
-    ]
+    ],
+    "latitude": "43.727360499656484",
+    "longitude": "22.58535872720058"
   },
   {
     "title": "Belogradchik Rocks",
@@ -144,7 +156,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/7-3.jpg"
       }
-    ]
+    ],
+    "latitude": "43.62319184607333",
+    "longitude": "22.677948498362014"
   },
   {
     "title": "Museum \"Etar\"",
@@ -165,7 +179,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/8-3.jpg"
       }
-    ]
+    ],
+    "latitude": "42.80363751144927",
+    "longitude": "25.349216056012125"
   },
   {
     "title": "Geographical Center",
@@ -186,7 +202,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/9-3.jpg"
       }
-    ]
+    ],
+    "latitude": "42.766167148445135",
+    "longitude": "25.23844762717529"
   },
   {
     "title": "Rila Monastery",
@@ -207,7 +225,9 @@
       {
         "src": "https://a100nts-repo.web.app/repo/10-3.jpg"
       }
-    ]
+    ],
+    "latitude": "42.13359416775585",
+    "longitude": "23.340234813666363"
   },
   {
     "title": "Madara Horseman",
@@ -228,6 +248,8 @@
       {
         "src": "https://a100nts-repo.web.app/repo/11-3.jpg"
       }
-    ]
+    ],
+    "latitude": "43.27755150007117",
+    "longitude": "27.11896311369612"
   }
 ]

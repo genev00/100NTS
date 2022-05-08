@@ -1,5 +1,7 @@
 package com.example.a100nts.entities;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ public class UserUI {
     private String lastName;
     private String email;
     private boolean ranking;
-    private int visitedSites;
+    private List<Long> visitedSites;
+    private List<String> sitesTime;
 
 }

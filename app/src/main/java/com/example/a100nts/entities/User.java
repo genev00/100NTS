@@ -20,6 +20,7 @@ public class User {
     private String password;
     private boolean ranking;
     private List<Comment> comments;
+    private List<String> sitesTime;
 
     public User(String email, String password) {
         this.email = email;

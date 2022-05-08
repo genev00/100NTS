@@ -134,6 +134,17 @@ public final class RestService {
         });
     }
 
+    public static UserUI visitSites(Long userId, Long[] ids) {
+        return executeInExceptionContainer(() -> {
+            HttpEntity<Long[]> entityIds = new HttpEntity<>(ids);
+            ResponseEntity<? extends UserUI> response = REST_TEMPLATE.exchange(
+                    SERVER_URL + "/users/" + userId + "/visit",
+                    HttpMethod.POST, entityIds, UserUI.class
+            );
+            return response.getBody();
+        });
+    }
+
     @SneakyThrows
     private static void showError(String message) {
         setErrorMessage(message);

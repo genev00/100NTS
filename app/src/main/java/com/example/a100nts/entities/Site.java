@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Site {
 
+    private Long id;
     private String title;
     private String province;
     private String town;
@@ -20,5 +21,6 @@ public class Site {
     private List<String> imageUrls;
     private List<Comment> comments;
     private double rating;
-
+    private double latitude;
+    private double longitude;
 }

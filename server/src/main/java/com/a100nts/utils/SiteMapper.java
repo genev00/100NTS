@@ -49,12 +49,15 @@ public final class SiteMapper {
     }
 
     private static void setCommonData(Site site, SiteDTO siteDTO) {
+        siteDTO.setId(site.getId());
         siteDTO.setImageUrls(site.getImages().stream()
                 .map(SiteImage::getSrc)
                 .collect(Collectors.toList()));
         siteDTO.setComments(site.getComments().stream()
                 .map(SiteMapper::commentToDTO)
                 .collect(Collectors.toList()));
+        siteDTO.setLatitude(Double.parseDouble(site.getLatitude()));
+        siteDTO.setLongitude(Double.parseDouble(site.getLongitude()));
     }
 
     public static CommentDTO commentToDTO(Comment comment) {

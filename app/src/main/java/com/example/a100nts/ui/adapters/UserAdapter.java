@@ -37,12 +37,17 @@ public class UserAdapter extends ArrayAdapter<UserUI> {
         final UserUI currentUser = userList.get(position);
 
         final TextView userPosition = listItem.findViewById(R.id.userRankPos);
-        userPosition.setText(position);
+        userPosition.setText(String.valueOf(position + 1));
 
         final TextView names = listItem.findViewById(R.id.userNamesRank);
         final String currentName = currentUser.getFirstName() + " " + currentUser.getLastName();
         names.setText(currentName);
 
+        final TextView sitesCount = listItem.findViewById(R.id.userVisitedSites);
+        final String sitesText = currentUser.getVisitedSites().size() + "/100";
+        sitesCount.setText(sitesText);
+
         return listItem;
     }
+
 }

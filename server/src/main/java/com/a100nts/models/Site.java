@@ -62,4 +62,8 @@ public class Site {
 	@ManyToMany
 	private List<User> visitedByUsers;
 
+	private String latitude;
+
+	private String longitude;
+
 }

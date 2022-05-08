@@ -1,7 +1,12 @@
 package com.example.a100nts.ui.login;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static com.example.a100nts.ui.sites.SitesActivity.setIsRankingEnabled;
+import static com.example.a100nts.ui.sites.SitesActivity.setIsUserSitesView;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +19,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.a100nts.databinding.ActivityLoginBinding;
 import com.example.a100nts.ui.sites.SitesActivity;
+import com.example.a100nts.ui.user.UserActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private EditText emailEditText;
     private EditText passwordEditText;
+    private int locationRequestCode = 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getLoginResult().observe(this, getLoginErrorObserver());
 
         setUpButtons(loginButton, viewAllButton);
+        requestLocationAccess();
     }
 
     private void setUpButtons(Button loginButton, Button viewAllButton) {
@@ -67,6 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             passwordEditText.setText("");
         });
         viewAllButton.setOnClickListener(v -> {
+            setIsRankingEnabled(false);
+            setIsUserSitesView(false);
             Intent viewAllSites = new Intent(this, SitesActivity.class);
             startActivity(viewAllSites);
             emailEditText.setText("");
@@ -123,6 +134,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(String error) {
         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    private void requestLocationAccess() {
+        ActivityCompat.requestPermissions(LoginActivity.this,
+                new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},
+                locationRequestCode);
     }
 
     @Override
