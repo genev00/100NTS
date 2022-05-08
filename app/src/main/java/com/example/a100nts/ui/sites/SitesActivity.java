@@ -78,6 +78,8 @@ public class SitesActivity extends AppCompatActivity {
     private void checkViewTitle() {
         if (isRankingEnabled) {
             binding.textViewSitesTitle.setText(getString(R.string.rated_sites));
+        } else if (isUserSitesView) {
+            binding.textViewSitesTitle.setText(getString(R.string.my_sites));
         } else {
             binding.textViewSitesTitle.setText(getString(R.string.sites));
         }
