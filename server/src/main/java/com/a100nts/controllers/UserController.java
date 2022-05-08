@@ -57,4 +57,9 @@ public class UserController {
         return new ResponseEntity<>(userToDTO(userService.updateUser(user)), HttpStatus.OK);
     }
 
+    @PostMapping("/{userId}/visit")
+    public ResponseEntity<UserDTO> visitSites(@PathVariable Long userId, @RequestBody Long[] siteIds) {
+        return new ResponseEntity<>(userToDTO(userService.visitSites(userId, siteIds)), HttpStatus.OK);
+    }
+
 }

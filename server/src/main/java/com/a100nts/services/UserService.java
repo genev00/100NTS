@@ -9,5 +9,6 @@ public interface UserService {
     User registerUser(User user);
 	List<User> getAllUsers();
 	User updateUser(User user);
+	User visitSites(Long userId, Long[] siteIds);
 
 }

@@ -41,4 +41,10 @@
     <string name="prompt_new_email">Нов имейл</string>
     <string name="existing_email">Потребител с такъв имейл вече съществува</string>
     <string name="updated_successfully">Потребителската информация е обновена успешно</string>
+    <string name="location_not_granted">Нямаме достъп до местоположението на устройството ти – някои функции може да не работят.</string>
+    <string name="not_enough_user_rankings">Към момента няма участващи потребители или такива с по един посетен обект.</string>
+    <string name="user_ranking">Потребителска класация</string>
+    <string name="my_sites">Посетените от мен обекти</string>
+    <string name="visited_on">Посетен на:</string>
+    <string name="not_enough_user_visites">Не си посетил нито един туристически обект към момента.</string>
 </resources>

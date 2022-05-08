@@ -43,10 +43,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/shevicaTop" />
 
+    <Button
+        android:id="@+id/buttonViewAllSites"
+        android:layout_width="412dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="1dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/all_sites"
+        app:layout_constraintBottom_toBottomOf="@+id/viewAllSites"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shevicaTop"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/viewAllSiteImg"
-        android:layout_width="228dp"
-        android:layout_height="147dp"
+        android:layout_width="189dp"
+        android:layout_height="96dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -58,7 +71,7 @@
         android:id="@+id/viewAllSites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="90dp"
         android:text="@string/all_sites"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -67,46 +80,9 @@
         app:layout_constraintTop_toTopOf="@+id/viewAllSiteImg" />
 
     <Button
-        android:id="@+id/buttonViewAllSites"
-        android:layout_width="409dp"
-        android:layout_height="166dp"
-        android:layout_marginTop="1dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/all_sites"
-        app:layout_constraintBottom_toBottomOf="@+id/viewAllSites"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shevicaTop"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/topSitesImage"
-        android:layout_width="228dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewAllSites"
-        app:srcCompat="@drawable/nevski_vector_medal" />
-
-    <TextView
-        android:id="@+id/viewTopSites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:text="@string/top_sites"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topSitesImage" />
-
-    <Button
         android:id="@+id/buttonViewTopSites"
         android:layout_width="412dp"
-        android:layout_height="169dp"
+        android:layout_height="115dp"
         android:layout_marginTop="16dp"
         android:background="?android:attr/selectableItemBackground"
         android:contentDescription="@string/top_sites"
@@ -118,10 +94,48 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
+        android:id="@+id/topSitesImage"
+        android:layout_width="189dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewAllSites"
+        app:srcCompat="@drawable/nevski_vector_medal" />
+
+    <TextView
+        android:id="@+id/viewTopSites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/top_sites"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topSitesImage" />
+
+    <Button
+        android:id="@+id/buttonViewTopUsers"
+        android:layout_width="412dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/top_sites"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTopUsers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopSites"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
         android:id="@+id/topUsersImage"
-        android:layout_width="228dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="189dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +146,7 @@
         android:id="@+id/viewTopUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="134dp"
+        android:layout_marginTop="90dp"
         android:text="@string/top_users"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -142,18 +156,42 @@
         app:layout_constraintTop_toTopOf="@+id/topUsersImage" />
 
     <Button
-        android:id="@+id/buttonViewTopUsers"
+        android:id="@+id/buttonViewMySites"
         android:layout_width="412dp"
-        android:layout_height="169dp"
+        android:layout_height="115dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewMySites"
         android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/top_sites"
-        app:layout_constraintBottom_toBottomOf="@+id/viewTopUsers"
+        android:contentDescription="@string/my_sites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTopSites"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopUsers"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/mySitesImage"
+        android:layout_width="189dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopUsers"
+        app:srcCompat="@drawable/user_vector_nevski" />
+
+    <TextView
+        android:id="@+id/viewMySites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/my_sites"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mySitesImage" />
 
     <ImageView
         android:id="@+id/shevicaBot"

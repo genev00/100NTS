@@ -1,5 +1,6 @@
 package com.example.a100nts.ui.sites;
 
+import static com.example.a100nts.data.login.LoginRepository.getLoggedUser;
 import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import java.util.stream.Collectors;
 public class SitesActivity extends AppCompatActivity {
 
     private static boolean isRankingEnabled;
+    private static boolean isUserSitesView;
+
     private ActivitySitesBinding binding;
 
     @Override
@@ -32,6 +35,7 @@ public class SitesActivity extends AppCompatActivity {
         setActivity(this);
 
         binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
+        binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
 
         binding.cutSitesList.setAdapter(
                 new SiteAdapter(this, getSites())
@@ -57,6 +61,16 @@ public class SitesActivity extends AppCompatActivity {
                 binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
             }
             return sortedSites;
+        } else if (isUserSitesView) {
+            final List<Site> userSites = Arrays.stream(sites)
+                    .filter(s -> getLoggedUser().getVisitedSites().contains(s.getId()))
+                    .collect(Collectors.toList());
+            if (userSites.isEmpty()) {
+                binding.textNotEnoughUserSites.setVisibility(View.VISIBLE);
+            } else {
+                binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
+            }
+            return userSites;
         }
         return Arrays.asList(sites);
     }
@@ -71,6 +85,14 @@ public class SitesActivity extends AppCompatActivity {
 
     public static void setIsRankingEnabled(boolean isRankingEnabled) {
         SitesActivity.isRankingEnabled = isRankingEnabled;
+    }
+
+    public static boolean isUserSitesView() {
+        return isUserSitesView;
+    }
+
+    public static void setIsUserSitesView(boolean isUserSitesView) {
+        SitesActivity.isUserSitesView = isUserSitesView;
     }
 
     @Override
