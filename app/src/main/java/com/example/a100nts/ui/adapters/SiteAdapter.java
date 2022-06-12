@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,15 +27,18 @@ import com.example.a100nts.ui.sites.SiteDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SiteAdapter extends ArrayAdapter<Site> {
 
     private final Context mContext;
-    private final List<Site> siteList;
+    private List<Site> initialSiteList;
+    private List<Site> siteList;
 
     public SiteAdapter(@NonNull Context context, @NonNull List<Site> sites) {
         super(context, 0, sites);
         this.mContext = context;
+        this.initialSiteList = sites;
         this.siteList = sites;
     }
 
@@ -99,4 +104,50 @@ public class SiteAdapter extends ArrayAdapter<Site> {
 
         return listItem;
     }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence searchValue) {
+                String searchKey = searchValue.toString().toLowerCase();
+                FilterResults filteredSites = new FilterResults();
+                if (!searchKey.isEmpty()) {
+                    List<Site> filteredItems = initialSiteList.stream()
+                            .filter(s -> s.getTitle().toLowerCase().contains(searchKey)
+                                    || s.getProvince().toLowerCase().contains(searchKey)
+                                    || s.getTown().toLowerCase().contains(searchKey))
+                            .collect(Collectors.toList());
+                    filteredSites.values = filteredItems;
+                    filteredSites.count = filteredItems.size();
+                    if (filteredItems.isEmpty()) {
+                        Toast.makeText(mContext.getApplicationContext(), R.string.no_search_results,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    filteredSites.values = initialSiteList;
+                    filteredSites.count = initialSiteList.size();
+                }
+                return filteredSites;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults results) {
+                if (results.count > 0) {
+                    siteList = (List<Site>) results.values;
+                    notifyDataSetChanged();
+                } else {
+                    notifyDataSetInvalidated();
+                }
+            }
+        };
+    }
+
+    @Override
+    public int getCount() {
+        return siteList.size();
+    }
+
 }

@@ -56,4 +56,6 @@
     <string name="comment_here">Add your comment</string>
     <string name="add_comment">Post comment</string>
     <string name="invalid_comment">Comment must be >5 characters</string>
+    <string name="search_site">Search by name, province or town</string>
+    <string name="no_search_results">There are no matching sites</string>
 </resources>
