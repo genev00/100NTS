@@ -37,6 +37,7 @@ public class SitesActivity extends AppCompatActivity {
 
         binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
         binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
+        binding.searchSite.setVisibility(View.VISIBLE);
 
         SiteAdapter siteAdapter = new SiteAdapter(this, getSites());
         binding.cutSitesList.setAdapter(siteAdapter);
