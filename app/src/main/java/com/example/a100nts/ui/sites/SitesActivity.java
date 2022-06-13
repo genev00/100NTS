@@ -5,15 +5,15 @@ import static com.example.a100nts.utils.ActivityHolder.setActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a100nts.R;
-import com.example.a100nts.utils.RestService;
 import com.example.a100nts.databinding.ActivitySitesBinding;
 import com.example.a100nts.entities.Site;
 import com.example.a100nts.ui.adapters.SiteAdapter;
+import com.example.a100nts.utils.RestService;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -37,10 +37,11 @@ public class SitesActivity extends AppCompatActivity {
 
         binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
         binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
+        binding.searchSite.setVisibility(View.VISIBLE);
 
-        binding.cutSitesList.setAdapter(
-                new SiteAdapter(this, getSites())
-        );
+        SiteAdapter siteAdapter = new SiteAdapter(this, getSites());
+        binding.cutSitesList.setAdapter(siteAdapter);
+        binding.searchSite.setOnQueryTextListener(getSearchOnEditListener(siteAdapter));
 
         checkViewTitle();
     }
@@ -74,6 +75,7 @@ public class SitesActivity extends AppCompatActivity {
         final List<Site> sortedSites = getSitesByRanking(sites);
         if (sortedSites.isEmpty()) {
             binding.textNotEnoughSiteRankings.setVisibility(View.VISIBLE);
+            binding.searchSite.setVisibility(View.INVISIBLE);
         } else {
             binding.textNotEnoughSiteRankings.setVisibility(View.INVISIBLE);
         }
@@ -91,6 +93,7 @@ public class SitesActivity extends AppCompatActivity {
         final List<Site> userSites = getUserSites(sites);
         if (userSites.isEmpty()) {
             binding.textNotEnoughUserSites.setVisibility(View.VISIBLE);
+            binding.searchSite.setVisibility(View.INVISIBLE);
         } else {
             binding.textNotEnoughUserSites.setVisibility(View.INVISIBLE);
         }
@@ -101,6 +104,22 @@ public class SitesActivity extends AppCompatActivity {
         return Arrays.stream(sites)
                 .filter(s -> getLoggedUser().getVisitedSites().contains(s.getId()))
                 .collect(Collectors.toList());
+    }
+
+    private SearchView.OnQueryTextListener getSearchOnEditListener(SiteAdapter siteAdapter) {
+        return new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String searchedValue) {
+                siteAdapter.getFilter().filter(searchedValue);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String searchedValue) {
+                siteAdapter.getFilter().filter(searchedValue);
+                return false;
+            }
+        };
     }
 
     public static void setIsRankingEnabled(boolean isRankingEnabled) {

@@ -56,4 +56,6 @@
     <string name="comment_here">Добави коментар</string>
     <string name="add_comment">Публикувай коментар</string>
     <string name="invalid_comment">Коментарът трябва да бъде >5 символа</string>
+    <string name="search_site">Потръси по име, област или град</string>
+    <string name="no_search_results">Няма обекти, съответстващи на търсенето</string>
 </resources>
